@@ -1,7 +1,6 @@
-from pydantic import BaseModel, PositiveInt, EmailStr
+from pydantic import BaseModel, PositiveInt
 from typing import Literal, Any
 from datetime import date
-
 
 class ReactionAnnotation(BaseModel):
     """
@@ -25,18 +24,14 @@ class ReactionAnnotation(BaseModel):
     class Config:
         fields = {'key':'_key'}
 
+
 class Reaction(BaseModel):
     """
     Class aimed to check 
     """
     role: str = "reaction"
     key: str
-    curated: bool = False
-    source: str
     smiles: str
-    temperature: float | None = None
-    pressure: float | None = None
-    ph: float | None = None
     crossref: list[str] = []
     comments: str = ""
     attributes: list[Any] = []
@@ -49,15 +44,38 @@ class Molecule(BaseModel):
     smiles: str
     inchi: str
     inchikey: str
+    title: str | None = None 
+    iupac_name: str | None = None
+    cid: int | None = None
     mw: float | None = None
+    formula: str | None = None
+    attributes: list[Any] = []
     class Config:
         fields = {'key':'_key'}
 
-class Agent(BaseModel):
-    id: str
-    type: Literal['radiation', 'catalyst', 'disolvent']
-    smiles: str | None
-    attributes: list[Any]
+class Conditions(BaseModel):
+    key: str
+    annotation: str
+    role: str = "conditions"
+    source: str
+    temperature: float | None = None
+    pressure: float | None = None
+    ph: float | None = None
+    time: float | None = None
+    agents: list[str] = []
+    waste: list[str] = []
+    light: str | None = None
+    
+    class Config:
+        fields = {'key':'_key'}
+
+class Source(BaseModel):
+    doi: str
+    title: str
+    year: int
+    authors: list[str] = []
+    tag: str | None = None
+    keywords: list[str] = []
 
 
 class ReactantLink(BaseModel):
@@ -77,13 +95,10 @@ class ProductLink(BaseModel):
     class Config:
         fields = {'from_': '_from', 'to_':'_to'}
 
-class ReactionAnnotationLink(BaseModel):
+
+class ReactionConditionsLink(BaseModel):
     from_: str
     to_: str
-    role: str = 'generated_from'
+    role: str = 'described in'
     class Config:
         fields = {'from_': '_from', 'to_':'_to'}
-
-class AgentLink(BaseModel):
-    agent: str
-    reaction: str
