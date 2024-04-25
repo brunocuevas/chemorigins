@@ -1,0 +1,1218 @@
+[
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N.O=C[O-]>>NC=O.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NH4 + HCO2- -> formamide",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "C#N.O>>NC=O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "cyanide + water -> formamide",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "C#N.O.S.S>>C=O.N.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu(I)-Cu(II)"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "cyanide + H3O -> H2CO + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "C=O.C#N>>N#CCO",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu(I)-Cu(II)"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "H2CO + cyanide -> N#CCO",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CCO.N>>N#CCN.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "close to equilibrium"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CCO + NH3 -> NCC#N + water",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CCO.O>>O=CCO.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu(I)-Cu(II) photocatalysis"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OCC#N + water -> O=CCO + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "O=CCO.C#N>>N#CC(O)CO",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu(I)-Cu(II) photocatalysis"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "O=CCO + C#N -> OCC(O)C#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CC(O)CO.O.S.S>>O=CC(O)CO.N.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OCC(O)C#N + water -> OCC(O)C=O + NH3 ",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "O=CCO>>CC=O.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "incomplete stoichiometry"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "O=CCO -> O=CC + water ",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC=O.C#N>>CC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "O=CC + C#N -> N#CC(O)C",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC(O)C#N.N>>CC(N)C#N.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CC(O)C + NH3 ->  N#CC(N)C + water",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC(O)C#N.O.S.S>>CC(O)C=O.N.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu-H2S photocatalysis"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CC(O)C + water -> O=CC(O)C + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC(O)C=O.C#N>>CC(O)CC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "O=CC(O)C + C#N  -> OC(C#N)CC(O)C",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC(O)CC(O)C#N.N>>CC(O)C(N)C#N.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OC(C#N)CC(O)C -> N#CC(N)C(O)C",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CN.O=CCO>>Nc1ncco1",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC#N + O=CCO -> C1=COC(=N1)N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CN.O=CCO>>Nc1ncco1",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "inorganic phosphate"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC#N + O=CCO -> C1=COC(=N1)N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "Nc1ncco1.O=CC(O)CO>>NC1=NC2OC(CO)C(O)C2O1",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C1=COC(=N1)N + O=CC(O)CO -> C(C1C(C2C(O1)N=C(O2)N)O)O",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CN.O>>NC(N)=O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "phosphate"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC#N + water -> NC(=O)N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "NC1=NC2OC(CO)C(O)C2O1.C#CC#N>>C1=CN2=C(N=C1N)OC3C2OC(C3O)CO",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "phosphate"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C(C1C(C2C(O1)N=C(O2)N)O)O + C#CC#N -> C1=CN2=C(N=C1N)OC3C2OC(C3O)CO",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "C1=CN2=C(N=C1N)OC3C2OC(C3O)CO.NC(N)=O.O=P([O-])([O-])[O-]>>Nc1ccn(C2OC(CO)C3OP(=O)([O-])OC32)c(=O)n1",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C1=CN2=C(N=C1N)OC3C2OC(C3O)CO + urea + phosphate -> C1=CN(C(=O)N=C1N)C2C3C(C(O2)CO)OP(=O)(O3)[O-]",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "Nc1ccn(C2OC(CO)C3OP(=O)([O-])OC32)c(=O)n1.O>>O=c1ccn([C]2O[C](CO)[C]3OP(=O)([O-])O[C]32)c(=O)[nH]1.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "UV light"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C1=CN(C(=O)N=C1N)C2C3C(C(O2)CO)OP(=O)(O3)[O-] + water -> OC[C]1O[C]([C]2O[P]([O-])(=O)O[C]12)N3C=CC(=O)NC3=O + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "C1=CN2=C(N=C1N)OC3C2OC(C3O)CO.NC(N)=O.O=P([O-])([O-])[O-]>>Nc1ccn(C2OC(CO)C3OP(=O)([O-])OC32)c(=O)n1",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C1=CN2=C(N=C1N)OC3C2OC(C3O)CO + urea + phosphate -> C1=CN(C(=O)N=C1N)C2C3C(C(O2)CO)OP(=O)(O3)[O-]",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "Nc1ccn(C2OC(CO)C3OP(=O)([O-])OC32)c(=O)n1.O>>O=c1ccn([C]2O[C](CO)[C]3OP(=O)([O-])O[C]32)c(=O)[nH]1.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "photocatalyzed by UV light"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C1=CN(C(=O)N=C1N)C2C3C(C(O2)CO)OP(=O)(O3)[O-] + water -> OC[C]1O[C]([C]2O[P]([O-])(=O)O[C]12)N3C=CC(=O)NC3=O + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "O=CC(O)CO>>O=C(CO)CO",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "phosphate"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OCC(O)C=O -> OCC(=O)CO",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "O=C(CO)CO.S.S.S.S>>CC(C)=O.O.O.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu-H2S photocatalysis"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OCC(=O)CO + 4 H2S -> CC(=O)C + 2 water + HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "O=C(CO)CO.S.S.S.S>>CC(C)=O.O.O.SS.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu-H2S photocatalysis"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OCC(=O)CO + 4 H2S -> CC(=O)C + 2 water + 2 HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "O=C(CO)CO.S.S>>CC(=O)CO.O.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu-H2S photocatalysis"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OCC(=O)CO + 2 H2S -> CC(=O)CO + water + HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC(=O)CO.S.S>>CC(C)=O.O.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu-H2S photocatalysis"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "CC(=O)CO + 2 H2S -> CC(=O)C + water + HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "O=C(CO)CO.S.S>>OCC(O)CO.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu-H2S photocatalysis"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OCC(=O)CO + 2 H2S -> OCC(O)CO + HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC=O.C#N>>CC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C(=O)C + C#N -> CC(O)C#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC=O.C#N>>CC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C(=O)C + C#N -> C(C)(O)C#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC=O.C#N>>CC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C(=O)C + C#N -> C(O)(C)C#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC(C)=O.C#N>>CC(C)(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "CC(=O)C + C#N -> OC(C)(C)C#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC(C)(O)C#N.S>>CC(C)(O)C(N)=S",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OC(C)(C)C#N + H2S -> OC(C)(C)C(N)=S",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC(C)(O)C(N)=S.C#N.S.S.O>>CC(C)C(O)C#N.SS.SS.S",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OC(C)(C)C(N)=S + C#N + 2 H2S -> CC(C)C(O)C#N + 2 HSSH + H2S",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC(C)C(O)C#N.N>>CC(C)C(N)C#N.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "CC(C)C(O)C#N + NH3 -> CC(C)C(N)C#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC(C)C(O)C(N)=S.S.S>>CC(C)CC(N)=S.SS.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "photoreduction by Cu(II)-Cu(I) H2S"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "CC(C)C(O)C(=S)N + 2 H2S -> CC(C)CC(=S)N + HSSH + water",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC(C)CC(N)=S.O.C#N>>CC(C)CC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "CC(C)CC(=S)N + water  + C#N > CC(C)CC(O)C#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "CC(C)CC(N)=S.N>>CC(C)CC(O)C#N.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "CC(C)CC(=S)N + NH3  -> CC(C)CC(O)C#N + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "C#N.C#C>>C=CC#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "CuCl salts (Nieuwland catalysts)"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C#N + C#C -> C=CC#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "C=CC#N.N>>N#CCCN",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "CuCl salts (Nieuwland catalysts)"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C=CC#N + NH3 -> NCCC#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CCCN.N#CN>>N#CCCNC(=N)N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NCCC#N + N#CN -> N#CCCNC(=N)N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CCCNC(=N)N.S.S>>NC1=NCCC(O)N1.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu(I)-H2S photoreduction"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CCCNC(=N)N + 2 H2S -> C1CN=C(NC1O)N + HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CCCNC(=N)N.S.S.O>>NC1=NCCC(O)N1.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu(I)-H2S photoreduction"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CCCNC(=N)N + 2 H2S + water -> C1CN=C(NC1O)N + HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CCCNC(=N)N.S.S.O>>NC1=NCCC(O)N1.SS.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu(I)-H2S photoreduction"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CCCNC(=N)N + 2 H2S + water -> C1CN=C(NC1O)N + HSSH + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "NC1=NCCC(O)N1.C#N>>N#CC(O)CCNC(=N)N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C1CN=C(NC1O)N + C#N -> N=C(N)NCCC(C#N)O",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CC(O)CCNC(=N)N.S>>N=C(N)NCCC(O)C(N)=S",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N=C(N)NCCC(C#N)O + H2S -> N=C(N)NCCC(O)C(=S)N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N=C(N)NCCC(O)C(N)=S.S.S>>N=C(N)NCCCC(N)=S.O.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu-H2S photoreduction"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N=C(N)NCCC(O)C(=S)N + 2 H2S -> N=C(N)NCCCC(=S)N + water + HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N=C(N)NCCCC(N)=S.O.S.S.[C-]#N>>N#CC(O)CCCNC(=N)N.S.SS.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Cu-H2S photoreduction"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N=C(N)NCCCC(=S)N + water + 2 H2S + cyanide -> N=C(N)NCCCC(C#N)O + H2S + HSSH + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CC(O)CCCNC(=N)N.N>>N#CC(N)CCCNC(=N)N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N=C(N)NCCCC(C#N)O + NH3 -> N=C(N)NCCCC(C#N)N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "NCCC=O.C#N>>N#CC(O)CCN",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NCCC=O + HC#N -> NCCC(C#N)O",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "NCCC=O.C#N>>N#CC(O)CCN",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NCCC=O + C#N -> NCCC(C#N)O",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CC(O)CCN.S>>NCCC(O)C(N)=S",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NCCC(C#N)O + H2S -> NCCC(O)C(=S)N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CC(O)CCN.S>>OC1CCNC1=S.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NCCC(C#N)O + H2S -> C1CNC(=S)C1O + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "OC1CCNC1=S.S.S>>S=C1CCCN1.SS.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "OC1CCNC1=S + 2 H2S -> C1CC(=S)NC1 + HSSH + water",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "S=C1CCCN1.C#N>>N#CC1CCCN1.S",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C1CC(=S)NC1 + C#N -> C1CC(C#N)NC1 + H2S",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "C#N.C#C>>C#CC#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Catalyzed by CuCl2"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C#N + C#C -> C#CC#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "C#CC#N.C#N>>N#CC=CC#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C#CC#N + C#N -> N#CC=CC#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "C#CC#N.C#N>>N#CCC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C#CC#N + C#N -> N#CCC(C#N)O",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "C#CC#N.C#N.O>>N#CCC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "Neutral pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C#CC#N + C#N + water -> N#CCC(C#N)O",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CC=CC#N.S.S>>N#CCCC#N.SS",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CC=CC#N + 2 H2S -> N#CCCC#N + HSSH",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CCCC#N.O>>N#CCCC=O.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CCCC#N + H2O -> O=CCCC#N + NH3",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CCCC=O.C#N>>N#CCCCC(O)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "O=CCCC#N + C#N -> N#CC(O)CCCC#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202",
+        "smiles": "N#CCCC(O)C#N.N>>N#CCCC(N)C#N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            ""
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "N#CCCC(O)C#N + NH3 -> N#CCCC(N)C#N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CCN.O.O>>N.NCC(=O)O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NCC#N.O.O>>NCC(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC(N)C#N.O.O>>CC(N)C(=O)O.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(C)C#N.O.O>>NC(C)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CC(N)CO.O.O>>N.NC(CO)C(=O)O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(CO)C#N.O.O>>NC(CO)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC(O)C(N)C#N.O.O>>CC(O)C(N)C(=O)O.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(C(O)C)C#N.O.O>>NC(C(O)C)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC(C)C(N)C#N.O.O>>CC(C)C(N)C(=O)O.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(C(C)C)C#N.O.O>>NC(C(C)C)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "CC(C)CC(N)C#N.O.O>>CC(C)C(N)C(=O)O.N",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(CC(C)C)C#N.O.O>>NC(C(C)C)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CC(N)CCCNC(=N)N.O.O>>N.N=C(N)NCCCC(N)C(=O)O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(CCCNC(=N)N)C#N.O.O>>NC(CCCNC(=N)N)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CCC(N)C#N.O.O.O.O>>N.NC(CC(=O)O)C(=O)O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(CC#N)C#N.O.O.O.O>>NC(CC(=O)O)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CCCC(N)C#N.O.O.O.O>>N.NC(CCC(=O)O)C(=O)O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(CCC#N)C#N.O.O.O.O>>NC(CCC(=O)O)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N.NC(CCC(=O)O)C(=O)O>>NC(=O)CCC(N)C(=O)O.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(CCC(=O)O)C(=O)O.N>>NC(CCC(=O)N)C(=O)O.O",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N.NC(CC(=O)O)C(=O)O>>NC(=O)CC(N)C(=O)O.O",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "NC(CC(=O)O)C(=O)O.N>>NC(CC(=O)N)C(=O)O.O",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    },
+    {
+        "source": "10.1038/nchem.2202 ",
+        "smiles": "N#CC1CCCN1.O.O>>N.O=C(O)C1CCCN1",
+        "agents": [],
+        "waste": [],
+        "conditions": [
+            "low pH"
+        ],
+        "crossref": [],
+        "comments": "",
+        "primary": "C1CC(NC1)C#N.O.O>>C1CC(NC1)C(=O)O.N",
+        "attributes": [],
+        "curated": false,
+        "curated_by": "",
+        "key": ""
+    }
+]

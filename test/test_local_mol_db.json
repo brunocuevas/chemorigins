@@ -1,0 +1,26 @@
+[
+    {
+        "key":"pbm-000001",
+        "smiles":"CC",
+        "inchi":"asdada",
+        "inchikey":"asadsadas",
+        "title":"ethane",
+        "iupac_name":"neutrinio",
+        "cid":12313,
+        "mw":124,
+        "formula":"C2H6",
+        "name":"asdsadad"
+    },
+    {
+        "key":"mol-s-LCTONWCANYUPML-UHFFFAOYSA-N",
+        "smiles":"CC(=O)C(=O)O",
+        "inchi":"InChI=1S\/C3H4O3\/c1-2(4)3(5)6\/h1H3,(H,5,6)",
+        "inchikey":"LCTONWCANYUPML-UHFFFAOYSA-N",
+        "title":"pyruvic acid",
+        "iupac_name":"None",
+        "cid":1060,
+        "mw":88,
+        "formula":"C3H4O3",
+        "name":"pyruvic acid"
+    }
+]
