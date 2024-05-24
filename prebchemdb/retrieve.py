@@ -5,6 +5,7 @@ from prebchemdb.buffer import ImageBuffer
 from neomodel import db
 from prebchemdb.neoschema import Reactions, Molecules, Conditions, Agents, Sources, PrebChemDBModule
 import os
+import time
 
 ibf = ImageBuffer(
     db_path = os.environ['PREBCHEMDB_IMAGE_BUFFER'] + '/image-buffer.db',
@@ -324,6 +325,8 @@ def _search_sources(query):
     
 def _full_search_results(q, include_images=True, include_molecules=True, include_reactions=True):
     
+    start = time.time()
+
     molecule_keys = _search_molecule(q)
     agent_keys = _search_agent(q)
     reaction_keys = _search_reaction(q)
@@ -335,7 +338,9 @@ def _full_search_results(q, include_images=True, include_molecules=True, include
     agents = []
     sources = []
 
-    
+    end = time.time()
+    print("creating results index, time spent = {:8.4f}s".format(end - start))
+
         
     def obtain_image_molecules(x):
         if include_images:
@@ -343,7 +348,7 @@ def _full_search_results(q, include_images=True, include_molecules=True, include
         else:
             return None 
 
-    
+    start = time.time()
     for mol_key in molecule_keys:
 
         mol = Molecules.nodes.get(key=mol_key).__properties__
@@ -356,18 +361,29 @@ def _full_search_results(q, include_images=True, include_molecules=True, include
                 reaction = _all_reaction_info(r, include_images=include_images)
                 
                 reactions += [reaction]
+    end = time.time()
+    print("molecule info, time spent = {:8.4f}s".format(end - start))
 
+    start = time.time()
     for agent_key in agent_keys:
         agent = Agents.nodes.get(key=agent_key).__properties__
         agents.append(agent)
+    end = time.time()
+    print("agents info, time spent = {:8.4f}s".format(end - start))
 
+    start = time.time()
     for publication_key in publication_keys:
         publication = Sources.nodes.get(doi=publication_key).__properties__
         sources.append(publication)
+    end = time.time()
+    print("publication info, time spent = {:8.4f}s".format(end - start))
 
+    start = time.time()
     for reaction_key in reaction_keys:
         reaction = _all_reaction_info(reaction_key, include_images=include_images)
         reactions += [reaction]
+    end = time.time()
+    print("reaction info, time spent = {:8.4f}s".format(end - start))
 
     context = dict(search_term=q)
     
@@ -452,4 +468,85 @@ def _expansion_operator(seeds):
         'reactions': reactions,
         'reactants': reactants,
         'products': products
+    }
+
+
+def _new_search_function(q):
+    molecule_keys = _search_molecule(q)
+    agent_keys = _search_agent(q)
+    reaction_keys = _search_reaction(q)
+    publication_keys = _search_sources(q)
+    molecule_images = []
+    reaction_images = []
+    reactions = []
+    molecules = []
+    agents = []
+    sources = []
+
+    # Searching for molecules
+    molecules_results, meta = db.cypher_query(
+        """
+        MATCH (n:Molecules)
+        WITH n, collect(n.key) AS reactants
+        WHERE ANY(x IN reactants WHERE x IN $seeds)
+        RETURN n
+        """, 
+        params={
+            'seeds': molecule_keys
+        }, resolve_objects=True
+    )
+    # Reactions
+    reactions_results, meta = db.cypher_query(
+        """
+        MATCH (n:Molecules)-[:REACTS_IN]->(r:Reactions) 
+        WITH r, collect(n.key) AS reactants
+        WHERE ANY(x IN reactants WHERE x IN $seeds)
+        WITH DISTINCT(r) AS rl
+        MATCH (c:Conditions)-[:DESCRIBES]-> (rl)
+        MATCH (s:Sources)-[:REPORTED]->(c)
+        OPTIONAL MATCH (a:Agents)-[:ENABLES]->(c)
+        WITH rl, c, s.doi AS source, COLLECT(a) AS agents
+        WITH rl, COLLECT(c{.*,agents, source}) AS conditions
+        RETURN rl, conditions
+        """, 
+        params={
+            'seeds': molecule_keys
+        }, resolve_objects=True
+    )
+
+    for reaction, conditions in reactions_results:
+        for condition in conditions[0]:
+            condition['agents'] = [a._properties for a in condition['agents']]
+
+        reactions.append({
+            'reaction': reaction.__properties__,
+            'img': ibf.generate_reaction_image(entry=reaction.key, smiles=reaction.smiles),
+            'conditions': [c for c in conditions[0]]
+        })
+        
+    for molecule  in molecules_results[0]:
+        molecules.append({
+            'molecule': molecule.__properties__,
+            'img': ibf.generate_molecule_image(entry=molecule.key, smiles=molecule.smiles)
+        })
+
+    
+    for agent_key in agent_keys:
+        agent = Agents.nodes.get(key=agent_key).__properties__
+        agents.append(agent)
+    
+
+    
+    for publication_key in publication_keys:
+        publication = Sources.nodes.get(doi=publication_key).__properties__
+        sources.append(publication)
+    
+    
+
+    return {
+        "search_term": q,
+        "reactions": reactions,
+        "molecules": molecules,
+        "agents": agents,
+        "sources": sources
     }

@@ -5,7 +5,8 @@ from prebchemdb.retrieve import (
     _all_reaction_info, _all_agent_info, _all_source_info, _all_molecule_info,
     _list_all_reaction_ids,
     _full_search_results, _find_similar_reactions,
-    _search_molecule, _obtain_module, _index_modules, _expansion_operator
+    _search_molecule, _obtain_module, _index_modules, _expansion_operator,
+    _new_search_function
 )
 import json
 import os
@@ -148,6 +149,14 @@ def expansion(codes):
     db.driver.close()
 
 
+@click.command()
+@click.argument('SEARCH_TERM')
+def new_search_results(search_term):
+    ctxt = _new_search_function(search_term)
+    click.echo(json.dumps(ctxt, indent=4))
+    db.driver.close()
+
+
 cli = click.Group()
 cli.add_command(reaction)
 cli.add_command(molecule)
@@ -166,6 +175,7 @@ cli.add_command(full_search_results)
 cli.add_command(modules)
 cli.add_command(similar_reactions)
 cli.add_command(expansion)
+cli.add_command(new_search_results)
 
 
 if __name__ == '__main__':

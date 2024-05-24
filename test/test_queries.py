@@ -1,6 +1,6 @@
 import unittest
 from prebchemdb.retrieve import _reactions_from_molecule, _all_reaction_info, _all_agent_info, _all_source_info# , Reactions, Molecules, 
-from prebchemdb.retrieve import _obtain_module, _all_molecule_info
+from prebchemdb.retrieve import _obtain_module, _all_molecule_info, _new_search_function
 from prebchemdb.neoschema import Reactions, Molecules
 from neomodel import config
 import os
@@ -52,6 +52,10 @@ class TestQueries(unittest.TestCase):
         r = _obtain_module('pbmdl-000001')
         self.assertEqual(1, 1)
 
+    def test_new_search(self):
+
+        u = _new_search_function('pbm-000226')
+        self.assertEqual(1, 1)
 
 
 
