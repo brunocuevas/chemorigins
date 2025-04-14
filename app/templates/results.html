@@ -1,0 +1,168 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- <div class="hero is-black">
+    <div class="hero-body">
+        <div class="section">
+            <h1 class="title is-1"> Search </h1>
+            <div class="field">
+                <p>Query</p>
+                <div class="control">
+                    <form method="post">
+                        {{ form.query(class="input") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  -->
+<!-- </div>
+
+
+<div class="container-flex bg-white"> -->
+
+<style>
+    .custom-container {
+      max-width: 1000px; /* Set your custom width */
+      margin: 0 auto;  /* Center it horizontally */
+    }
+</style>
+<div class="hero custom-container">
+    <div class="section">
+        <h2 class="title is-1"> Results for "{{ search_term }}"</h2>
+        <a class="button is-dark" href="/api/search/{{ search_term }}">Download</a>
+    </div>
+    
+</div>
+
+{% if molecules|length > 0 %}
+<div class="custom-container">
+    <div class="section">
+        <h3 class="title is-2">Molecules</h3>
+        <div class="grid">
+        {% for m in molecules %}
+            
+                <div class="card" style="width: 200px;">
+                    <header class="card-header">
+                        <a href="/molecules/{{ m.molecule.key }}">
+                            <p class="card-header-title">Molecule: {{ m.molecule.title }}</p>
+                        </a>
+
+                    </header>
+                    
+                    <img src="/static/{{m.img}}" alt="" class="card-image" width="200px">
+                    
+                </div>
+            
+        
+        {% endfor %}
+        </div>
+    </div>
+</div>
+    
+{% endif %}
+    
+{% if reactions|length > 0 %}
+<div class="custom-container">
+    <div class="section">
+        <h2 class="title is-2">Reactions</h2>
+
+
+
+        {% for reaction in reactions %}
+            
+        <div class="card is-hoverable">
+            <header class="card-header">
+                <a href="/reactions/{{ reaction.reaction.key }}">
+                    <p class="card-header-title">{{ reaction.reaction.key }}</p>
+                </a>
+
+            </header>
+            <img src="/static/{{ reaction.img }}" alt="" class="card-image">
+            <div class="card-content">
+                
+                
+                <table class="table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Key</th>
+                            <th scope="col">Temperature</th>
+                            <th scope="col">pH</th>
+                            <th scope="col">Pressure</th>
+                            <th scope="col">Agent</th>
+                            <th scope="col">DOI</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ca in reaction.conditions %}
+                            <tr>
+
+                                <td>{{ ca.key}}</td>
+                                <td>{{ ca.temperature}}</td>
+                                <td>{{ ca.ph}}</td>
+                                <td>{{ ca.pressure}}</td>
+                                <td>{% for agent in ca.agents %} <a href="/agents/{{ agent.key }}">{{agent.name}}</a>, {%endfor%}</td>
+                                <td><a href="{{ca.source}}"> {{ca.source}} </a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                
+                </table>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    
+{% endif %}
+
+
+{% if sources|length > 0 %}
+<div class="custom-container">
+    <div class="section">
+        <h2 class="title is-2">Sources</h2>
+
+
+
+        {% for source in sources %}
+            
+        <div class="card is-hoverable">
+            <header class="card-header">
+                <a href="/sources/{{ source.doi }}">
+                    <p class="card-header-title">{{ source.title }}</p>
+                </a>
+
+            </header>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    
+{% endif %}
+
+{% if agents|length > 0 %}
+    <div class="section">
+        <h2 class="title is-2">Agents</h2>
+
+
+
+        {% for agent in agents %}
+            
+        <div class="card is-hoverable">
+            <header class="card-header">
+                <a href="/agents/{{ agent.key }}">
+                    <p class="card-header-title">{{ agent.name }}</p>
+                </a>
+
+            </header>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% endblock %}

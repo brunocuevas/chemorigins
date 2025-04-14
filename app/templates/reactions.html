@@ -1,0 +1,145 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .custom-container {
+      max-width: 1000px; /* Set your custom width */
+      margin: 0 auto;  /* Center it horizontally */
+    }
+</style>
+
+<div class="hero custom-container">
+    <div class="hero-body">
+        <h1 class="title is-1">{{ reaction.key }}</h1>
+        <img class="box" src="/static/{{img}}" alt="">
+    
+    
+        <h2 class="title is-2"> Reactants and products </h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Key</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Smiles</th>
+                    <th scope="col">Mol. Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mol in reactants %}
+                <tr>
+                    <th scope="row">
+                        <a href="/molecules/{{ mol.key }}">
+                            {{ mol.key }}
+                        </a>
+                        
+                    </th>
+                    <th>REACTANT</th>
+                    <td>{{ mol.title }}</td>
+                    <td>{{ mol.smiles }}</td>
+                    <td>{{ mol.mw }}</td>
+                    
+                </tr>
+                {% endfor %}
+                
+                {% for mol in products %}
+                <tr>
+                    <th scope="row">
+                        <a href="/molecules/{{ mol.key }}">
+                            {{ mol.key }}
+                        </a>
+                    </th>
+                    <th>PRODUCT</th>
+                    <td>{{ mol.title }}</td>
+                    <td>{{ mol.smiles }}</td>
+                    <td>{{ mol.mw }}</td>
+                    
+                </tr>
+                {% endfor %}
+                
+
+            </tbody>
+        </table>
+
+        <h2 class="title is-2">Conditions </h2>
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th scope="col">Key</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Annotation</th>
+                    <th scope="col">Temperature</th>
+                    <th scope="col">Agents</th>
+                    <th scope="col">Pressure</th>
+                    <th scope="col">pH</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ca in conditions %}
+                <tr>
+                    
+                    
+                    <td scope="row">{{ ca.condition.key }}</td>
+                    <td> <a href="/sources/{{ ca.sources.doi }}">{{ ca.sources.doi }}</a></td>
+                    <td>{{ ca.condition.source_file }}</td>
+                    <td>{{ ca.condition.temperature }}</td>
+                    <td>{% for agent in ca.agents %} <a href="/agents/{{ agent.key }}">{{agent.name}}</a>, {%endfor%}</td>
+                    <td>{{ ca.condition.pressure }}</td>
+                    <td>{{ ca.condition.pH }}</td>
+                    
+                    
+
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="button is-dark" href="/api/reactions/{{ reaction.key }}">Download</a>
+
+        
+    </div>
+    
+</div> 
+
+<!-- <div class="custom-container">
+
+    
+    <div class="section">
+        <h2 class="title is-2">Similar reactions</h2>
+        {% for reaction in similar_reactions %}
+        <div class="card is-hoverable">
+            <header class="card-header">
+                <a href="/reactions/{{ reaction.key }}">
+                    <p class="card-header-title">{{ reaction.key }}</p>
+                </a>
+                <img src="/static/{{ reaction.img }}" alt="" class="card-image">
+            </header>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="section">
+        <h2 class="title is-2">Modules</h2>
+        {% for module in modules %}
+        <div class="card is-hoverable">
+            <header class="card-header">
+                <a href="/modules/{{ module.key }}">
+                    <p class="card-header-title">{{ module.key }}</p>
+                </a>
+                
+            </header>
+            <div class="card-content">
+                {{ module.description }}
+            </div>
+            
+                
+            
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>> -->
+
+{% endblock %}

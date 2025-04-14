@@ -1,0 +1,124 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .custom-container {
+      max-width: 1000px; /* Set your custom width */
+      margin: 0 auto;  /* Center it horizontally */
+    }
+    .colored-banner {
+        background-color: rgb(0,21,40);
+        background-image: url('/static/cubes.png'), linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(124,21,40,1) 100%); !important
+        background-repeat: repeat;
+        background-size: auto;
+        background-position: center;
+        
+    }
+    .custom-texture {
+        background-color: linear-gradient(90deg, rgba(0,21,40,1) 0%, rgba(4,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(0,21,40,1) 100%);
+        background-image: url('path-to-your-texture.png'), linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(124,21,40,1) 100%);; /* Path to your PNG file */
+        background-repeat: repeat; /* Repeats the pattern */
+        background-size: auto; /* Keeps the original size of the texture */
+        background-position: center; /* Centers the pattern */
+        background-color: #f5f5f5; /* Fallback background color */
+        background-repeat: repeat; /* Repeats the pattern */
+        background-size: 100px, 100px; /* Keeps the original size of the texture */
+        background-position: center; /* Centers the pattern */
+    }
+
+ </style>
+
+<div class="hero is-black colored-banner ">
+    <div class="hero-body custom-container">
+        <div class="section">
+            <h1 class="title is-1"> Expansion </h1>
+            <p>
+                In this page, you can explore the chemical space spanned by some reactants by
+                introducing their codes one by one, separated by a dot. Example: "pbm-000143.pbm-000120"
+            </p>
+            <br>
+            <div class="field">
+                <p>Query</p>
+                <div class="control">
+                    <form method="post">
+                        {{ expform.expquery(class="input") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% if search_flag == True %}
+    <div class="custom-container">
+        <div class="section">
+            <h2 class="title is-2">Results for "{{seeds}}"</h3>
+            <a class="button is-dark" href="/api/expansion/{{ seeds }}">Download</a>
+        </div>    
+        <div class="section">
+            <h3 class="title is-2">Reactants</h3>
+            <div class="grid">
+            {% for molecule in reactants %}
+                
+                    <div class="card" style="width: 200px;">
+                        <header class="card-header">
+                            <a href="/molecules/{{ molecule.key }}">
+                                <p class="card-header-title">Molecule: {{ molecule.title }}</p>
+                            </a>
+
+                        </header>
+                        
+                        <img src="/static/{{molecule.img}}" alt="" class="card-image" width="200px">
+                        
+                    </div>
+                
+            
+            {% endfor %}
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="title is-2">Products</h3>
+            <div class="grid">
+            {% for molecule in products %}
+                
+                    <div class="card" style="width: 200px;">
+                        <header class="card-header">
+                            <a href="/molecules/{{ molecule.key }}">
+                                <p class="card-header-title">Molecule: {{ molecule.title }}</p>
+                            </a>
+
+                        </header>
+                        
+                        <img src="/static/{{molecule.img}}" alt="" class="card-image" width="200px">
+                        
+                    </div>
+                
+            
+            {% endfor %}
+            </div>
+        </div>
+            
+                
+        <div class="section">
+            <h2 class="title is-2">Reactions</h2>
+
+            {% for reaction in reactions %}
+                
+            <div class="card is-hoverable">
+                <header class="card-header">
+                    <a href="/reactions/{{ reaction.key }}">
+                        <p class="card-header-title">{{ reaction.key }}</p>
+                    </a>
+
+                </header>
+                <img src="/static/{{ reaction.img }}" alt="" class="card-image">
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}

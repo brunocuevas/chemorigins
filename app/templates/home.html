@@ -1,0 +1,226 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .custom-container {
+      max-width: 1000px; /* Set your custom width */
+      margin: 0 auto;  /* Center it horizontally */
+    }
+    .colored-banner {
+        background-color: rgb(0,21,40);
+        background-image: url('/static/cubes.png'), linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(124,21,40,1) 100%); !important
+        background-repeat: repeat;
+        background-size: auto;
+        background-position: center;
+        
+    }
+    .custom-texture {
+        background-color: linear-gradient(90deg, rgba(0,21,40,1) 0%, rgba(4,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(0,21,40,1) 100%);
+        background-image: url('path-to-your-texture.png'), linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(124,21,40,1) 100%);; /* Path to your PNG file */
+        background-repeat: repeat; /* Repeats the pattern */
+        background-size: auto; /* Keeps the original size of the texture */
+        background-position: center; /* Centers the pattern */
+        background-color: #f5f5f5; /* Fallback background color */
+        background-repeat: repeat; /* Repeats the pattern */
+        background-size: 100px, 100px; /* Keeps the original size of the texture */
+        background-position: center; /* Centers the pattern */
+    }
+
+ </style>
+
+  
+
+<div class="hero is-medium is-dark colored-banner">
+    <div class="hero-body ">
+        <div class="custom-container">
+            <div class="columns">
+                <div class="column is-1 has-text-centered">
+                    <figure class="image is-inline-block">
+                        <img src="/static/ChemOrigins-Logo-white.png" width=60%>
+                    </figure>
+                </div>
+                <div class="column">
+                    <h1 class="title is-1"> ChemOrigins </h1>
+                    
+                </div>
+            </div>
+            <p class="subtitle">
+                Wellcome to ChemOrigins, a community-based effort to build a database
+                for <b>Prebiotic Chemistry</b>. Specifically, we aim to compile experimentally
+                tested prebiotic pathways to produce biomolecules or other molecules relevant for
+                the <b>Origin of Life</b>.
+            </p>
+            <div class="field">
+        
+                <div class="control">
+                    <form method="post">
+                        {{ form.query(class="input" , placeholder="Search...") }}
+                    </form>
+                </div>                
+            </div>
+            <p>
+                Our comprehensive database of the current knowledge of
+                prebiotic chemistry allows search by either molecule names (e.g. pyruvate)
+                SMILES notation (e.g. CC(=O)C(=O)O ), or just the plain identifier (pbm-000032)
+            </p>
+            
+        </div>
+        
+    </div>
+    
+  
+</div>
+
+<div class="hero">
+    <div class="hero-body">
+        <div class="custom-container">
+
+            <!-- <div class="section"> -->
+                <!-- <h1 class="title is-2"> Search </h1> -->
+                <!-- <p class="subtitle">
+                    Our comprehensive database of the current knowledge of
+                    prebiotic chemistry allows search by either molecule names (e.g. pyruvate)
+                    SMILES notation (e.g. CC(=O)C(=O)O ), or just the plain identifier (pbm-000032)
+                </p> -->
+                
+                
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+
+
+<div class="custom-container">
+    
+        
+    <div class="section">
+        <h1 class="title is-1">FAQ</h1>
+
+        <h2 class="title is-3"> What is prebiotic chemistry?</h2>
+
+        <div class="columns">
+            <div class="column">
+                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/8da305fe-3d0d-4471-9e6f-8e0479ac0d9a/d2snvkq-a1d20049-fb74-47f3-a6c8-1926639a4f3d.jpg/v1/fill/w_900,h_507,q_75,strp/ancient_earth_by_blamtroid_d2snvkq-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTA3IiwicGF0aCI6IlwvZlwvOGRhMzA1ZmUtM2QwZC00NDcxLTllNmYtOGUwNDc5YWMwZDlhXC9kMnNudmtxLWExZDIwMDQ5LWZiNzQtNDdmMy1hNmM4LTE5MjY2MzlhNGYzZC5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.1W7LJS8R4mAZoEhH0frHQFXOHjBsUbXtpudHQG8BCS8" alt="">
+            </div>
+            <div class="column">
+                <p>
+                    Although there are endless debates about the Origin of Life, most
+                    scientists would agree that life emerged from chemistry. The question
+                    is "which chemistry". Most prebiotic chemists try to explain how
+                    complex biomolecules would emerge the chemistry that was feasible
+                    in the ancient-Earth where life originated around 3.8 Gya. 
+                </p>
+                <br>
+                <p>
+                    Prebiotic chemistry is a unique field that requires understanding
+                    biology, chemistry and geology simulatenously. <b>Although the goal is 
+                    extraordinarily challenging, prebiotic chemistry has reached many
+                    different milestones, such as the synthesis of nucleosides or aminoacids.</b>
+                </p>
+            </div>
+        </div>
+        <h2 class="title is-3"> Why ChemOrigins?</h2>
+        <div class="columns">
+            <div class="column">
+                <img src="/static/pexels-pixabay-248152.jpg" alt="">
+            </div>
+            <div class="column">
+                <p>
+                    After the first succesful prebiotic chemistry experiments, in 1953, prebiotic chemists
+                    have generated a great amount of knowledge about the prebiotically viable conidtions
+                    that would allow the formation of biomolecules in the deep-past. However, navigating
+                    this knowledge is far from trivial, usually requiring endless hours of literature
+                    digest.
+            
+                </p>
+                <br>
+                <p>
+                    Scientists in other adjacent fields have benefited from having comprehensive databases
+                    allowing scientists and machines to access the data free of cost. <b>Therefore, we aspire to become 
+                    an important source to retrieve information about prebiotic chemistry</b>.
+
+                </p>
+            </div>
+        </div>
+
+
+        <h2 class="title is-3"> What can I find here?</h2>
+        <div class="columns">
+            <div class="column">
+                <img src="/static/schema.png" alt="" width=75%>
+            </div>
+            <div class="column">
+                <p>
+                    ChemOrigins provides access to a knowledge graph of prebiotic chemistry,
+                    where molecules have been connected with the reactions that produce
+                    them or consume them, and the reactions with the evidence where they
+                    were detected. This is possible through the literature curation of
+                    experimental prebiotic chemistry and the analysis of such a knowledge
+                    using a graph database. 
+            
+                </p>
+                <br>
+                <p>
+                    Questions such as "how can be alanine abiotically produced?",
+                    "under which temperatures has the synthesis of nucleotides measured?"
+                    or "which reactions are catalyzed by magnetite" are the kind of questions
+                    that we aim to address with this database.
+
+                </p>
+            </div>
+        </div>
+
+    
+        <h1 class="title"> How can I contribute?</h1>
+    
+        <div class="columns">
+            <div class="column">
+                <img src="/static/philosophy.png" alt="">
+            </div>
+            <div class="column">
+                <p>
+                    You can contribute by joining the discussion in the Github repository. You
+                    can either start new threads in the issues, or fork the
+                    repository to annotate new reactions.
+                </p>
+                
+            </div>
+        </div>
+
+        <h1 class="title">Who is building the database?</h1>
+    
+        <div class="columns">
+            <div class="column is-2">
+
+                <img src="/static/KacarLab-Logo_Circle-Black.png" alt="" width=60%>
+            </div>
+
+            <div class="column is-2">
+
+                <img src="/static/MUSE-Logo_Patch-Black.png" alt="" width=60%>
+            </div>
+            <div class="column is-2">
+                <img src="/static/black-center-UWlogo-print.png" alt="" width=100%>
+            </div>
+            <div class="column one-third">
+                <p>
+                    The database was built and is currently mantained
+                    by the Kaçar lab at the University of Wisconsin-Madison,
+                    and by Bruno Cuevas-Zuviría at the Universidad Politécnica de Madrid
+                </p>
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+    
+
+
+
+{% endblock %}

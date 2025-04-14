@@ -1,0 +1,84 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="hero">
+    <div class="hero-body">
+        <div class="custom-container">
+            <h1 class="title is-1">{{ agent.key }}</h1>
+            <a class="button is-dark" href="/api/agents/{{ agent.key }}">Download</a>
+        </div>
+    </div>
+</div> 
+
+
+<div class="custom-container section" id="agent">
+    <h2 class="title is-2">Agent</h2>
+    
+        
+        <table class="table is-fullwidth">
+            <thead>
+                <th scope="col">Variable</th>
+                <th scope="col">Value</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>{{ agent.name }}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>{{ agent.type }}</td>
+                </tr>
+                <tr>
+                    <td>SMILES</td>
+                    <td>{{ agent.smiles }}</td>
+                </tr>
+                    
+            </tbody>
+        </table>
+            
+        
+    
+</div>
+<div class="custom-container section" id="reactions">
+    <h2 class="title is-2">Reactions </h2>
+    {% for row in conditions_and_reactions %}
+    <div class="card is-black">
+        <div class="card-header">
+            <a href="/reactions/{{ row.reaction.key }}">
+                <h5 class="card-header-title"> {{ row.reaction.key }} </h5>
+            </a>
+        </div>
+        
+        <img src="/static/{{ row.img }}" alt="" class="card-image">    
+        <div class="card-content">
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th scope="col">Condition</th>
+                        <th scope="col">Source</th>
+                        <th scope="col">Temperature</th>
+                        <th scope="col">pH</th>
+                        <th scope="col">Pressure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ row.condition.key }}</td>
+                        <td> <a href="/sources/{{ row.source.doi }}">{{ row.source.doi }}</a></td>
+                        <td>{{ row.condition.temperature }}</td>
+                        <td>{{ row.condition.ph }}</td>
+                        <td>{{ row.condition.pressure }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+    {% endfor %}
+</div>
+    
+{% endblock %}

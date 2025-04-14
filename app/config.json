@@ -1,0 +1,10 @@
+{
+    "DEBUG": true,
+    "FLATPAGES_AUTO_RELOAD": true,
+    "FLATPAGES_EXTENSION": ".md",
+    "FLATPAGES_ROOT": "blog",
+    "POST_DIR": "insights",
+    "MOLECULE_OF_THE_MONTH_ROOT": "molecules",
+    "MOLECULE_OF_THE_MONTH": "formamide",
+    "PREBCHEMDB_IMAGE_BUFFER": "/Users/brunocuevaszuviria/projects/prebchemdb/app/static/"
+}

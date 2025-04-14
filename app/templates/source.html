@@ -1,0 +1,136 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="hero">
+    <div class="hero-body">
+        <div class="custom-container">
+            <h1 class="title is-1">{{ source.title }}</h1>
+            <a class="button is-dark" href="/api/sources/{{ source.doi }}">Download</a>
+        </div>
+    </div>
+</div> 
+
+
+
+
+    
+
+<div class="section custom-container" id="agent">
+    <h2 class="title is-2">Source</h2>
+    <table class="table is-fullwidth">
+        <thead>
+            <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td scope="row"> DOI </th>
+                <td> <a href="{{ doi }}"> {{ source.doi }} </a></td>
+                
+            </tr>
+
+            <tr>
+                <td scope="row"> Title </td>
+                <td>  {{ source.title }} </td>
+                
+            </tr>
+
+            <tr>
+                <td scope="row"> Authors </td>
+                <td> {{ source.authors }} </td>
+                
+            </tr>
+
+            <tr>
+                <td scope="row"> Journal </td>
+                <td> {{ source.journal }} </td>
+                
+            </tr>
+
+            <tr>
+                <td scope="row"> Year </td>
+                <td> {{ source.year }} </td>
+                
+            </tr>
+
+
+            
+        </tbody>
+    </table>
+</div>
+<div class="section custom-container">
+    <h2 class="title is-2">Reactions </h2>
+    {% for row in conditions_and_reactions %}
+    <div class="card">
+        <div class="card-header">
+            <a href="/reactions/{{ row.reaction.key }}">
+                <h5 class="card-header-title"> {{ row.reaction.key }} </h5>
+            </a>
+            
+        </div>
+        <img src="/static/{{row.img}}" alt="" class="card-image">    
+            
+        <div class="card-content">
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th scope="col">Key</th>
+                        <th scope="col">Value</th>
+                        
+                        </tr>
+                </thead>
+                
+                <tbody>
+                    
+                    <tr>
+                        <td scope="row">
+                            Annotation File
+                        </td>
+                        <td> {{ row.condition.condition.source_file}} </td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row">
+                            Temperature
+                        </td>
+                        <td> {{ row.condition.condition.temperature}} </td>
+                    </tr>
+
+                    <tr>
+                        <td scope="row">
+                            pH
+                        </td>
+                        <td> {{ row.condition.condition.ph}} </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">
+                            Pressure
+                        </td>
+                        <td> {{ row.condition.condition.pressure}} </td>
+                    </tr>
+                    
+                    <tr>
+                        <td scope="row">
+                            Agents
+                        </td>
+                        <td>{% for agent in row.condition.agents %} <a href="/agents/{{ agent.key }}">{{agent.name}}</a>, {%endfor%}</td>
+                    </tr>
+                    
+
+                </tbody>
+            </table>
+
+
+        </div>
+        
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

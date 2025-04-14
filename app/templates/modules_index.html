@@ -1,0 +1,87 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .custom-container {
+      max-width: 1000px; /* Set your custom width */
+      margin: 0 auto;  /* Center it horizontally */
+    }
+    .colored-banner {
+        background-color: rgb(0,21,40);
+        background-image: url('/static/cubes.png'), linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(124,21,40,1) 100%); !important
+        background-repeat: repeat;
+        background-size: auto;
+        background-position: center;
+        
+    }
+    .custom-texture {
+        background-color: linear-gradient(90deg, rgba(0,21,40,1) 0%, rgba(4,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(0,21,40,1) 100%);
+        background-image: url('path-to-your-texture.png'), linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(124,21,40,1) 100%);; /* Path to your PNG file */
+        background-repeat: repeat; /* Repeats the pattern */
+        background-size: auto; /* Keeps the original size of the texture */
+        background-position: center; /* Centers the pattern */
+        background-color: #f5f5f5; /* Fallback background color */
+        background-repeat: repeat; /* Repeats the pattern */
+        background-size: 100px, 100px; /* Keeps the original size of the texture */
+        background-position: center; /* Centers the pattern */
+    }
+
+ </style>
+
+
+<div class="hero  is-small is-white">
+    <div class="hero-body">
+        <div class="custom-container">
+            <h1 class="title is-1"> Modules </h1>
+            <div class="section">
+                <h2 class="title is-5"> What are modules?</h2>
+                <p>
+                    Modules are groups of chemical reactions. They enable
+                    building prebiotic chemical pathways, reporting
+                    the chemical hypothesis behind a specific experiment,
+                    or simply enumerating reactions connected by any 
+                    criteria.
+                </p>
+            </div>
+            <div class="section">
+                <h2 class="title is-5"> How are they built?</h2>
+                <p>
+                    A module can be defined only as a list of
+                    chemical reaction identifiers. Check the documentation
+                    to find information about how to define your own modules.
+                </p>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="section">
+    <div class="custom-container">
+        <table class="table is-fullwidth">
+            <thead>
+                <th scope="col"> ID </th>
+                <th scope="col"> Description </th>
+            </thead>
+            <tbody>
+            {% for row in modules %}
+        
+                <tr>
+                    <td scope="row">
+                        <a href="/modules/{{ row.key }}">
+                            {{ row.key }}
+                        </a>
+                    </td>
+                    <td>{{ row.description }}</td>
+                    
+                </tr>
+            
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}

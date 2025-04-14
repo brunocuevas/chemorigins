@@ -1,0 +1,263 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+
+<style>
+    .custom-container {
+      max-width: 1000px; /* Set your custom width */
+      margin: 0 auto;  /* Center it horizontally */
+    }
+</style>
+
+<div class="hero custom-container">
+    <div class="hero-body">
+        <h1 class="title is-1">{{ molecule.key }}</h1>
+        
+        <div class="level">
+            <div class="level-left">
+                <table class="table is-fullwidth">
+                    <thead>
+                        <th scope="col">Variable</th>
+                        <th scope="col">Value</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{ molecule.title }}</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Smiles</td>
+                            <td>{{ molecule.smiles }}</td>
+                        </tr>
+                        <tr>
+                            <td>Molecular weight</td>
+                            <td>{{ '%0.2f'| format(molecule.mw) }}</td>
+                        </tr>
+                        <tr>
+                            <td>Formula</td>
+                            <td>{{ molecule.formula }}</td>
+                        </tr>
+                        {% for ref in crossrefs %}
+                            <tr>
+                                <td>CrossRef</td>
+                                <td>
+                                    <a href="{{ ref.link }}">{{ref.type}} : {{ref.crossref}}</a>
+                                </td>
+                            </tr>
+                        {%endfor%}
+                            
+                    </tbody>
+                </table>
+            </div>
+            <div class="level-right">
+                
+                <img src="/static/{{img}}" alt="" class="box">
+                
+
+            </div>
+        </div>
+        <a class="button is-dark" href="/api/molecules/{{ molecule.key }}">Download</a>
+            
+        
+    </div>
+</div> 
+
+<div class="custom-container">
+
+    <div class="section">
+        <h2 class="title is-2">Reactions </h2>
+        
+        
+        <h2 class="title is-3" id="reactant_in">Reactant in </h2>
+            
+        {% for row in conditions_and_reactions_reactant %}
+
+        <div class="card">
+            <div class="card-header">
+                <a href="/reactions/{{ row.reaction.key }}">
+                    <h5 class="card-header-title"> {{ row.reaction.key }} </h5>
+                </a>
+                
+            </div>
+            <div class="card-image">
+                <img src="/static/{{row.img}}" alt="" class="card-img-top">
+            </div>
+
+            <div class="card-content">
+                
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th scope="col">Key</th>
+                            <th scope="col">Value</th>
+                            
+                            </tr>
+                    </thead>
+                    
+                    <tbody>
+                        
+                        <tr>
+                            <td scope="row">
+                                Annotation File
+                            </td>
+                            <td> {{ row.condition.condition.source_file}} </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">
+                                Temperature
+                            </td>
+                            <td> {{ row.condition.condition.temperature}} </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">
+                                pH
+                            </td>
+                            <td> {{ row.condition.condition.ph}} </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                Pressure
+                            </td>
+                            <td> {{ row.condition.condition.pressure}} </td>
+                        </tr>
+                        
+                        <tr>
+                            <td scope="row">
+                                Agents
+                            </td>
+                            <td>{% for agent in row.condition.agents %} <a href="/agents/{{ agent.key }}">{{agent.name}}</a>, {%endfor%}</td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">
+                                Source
+                            </td>
+                            <td> <a href="/sources/{{ row.condition.sources.doi }}">{{ row.condition.sources.doi }}</a> </td>
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            
+        </div>
+        {% endfor %}
+
+        <h2 class="title is-3"  id="product_in">Product in </h2>
+
+        {% for row in conditions_and_reactions_product %}
+
+        <div class="card">
+            <div class="card-header">
+                <a href="/reactions/{{ row.reaction.key }}">
+                    <h5 class="card-header-title"> {{ row.reaction.key }} </h5>
+                </a>
+                
+            </div>
+            <div class="card-image">
+                <img src="/static/{{row.img}}" alt="" class="card-img-top">
+            </div>
+
+            <div class="card-content">
+                
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th scope="col">Key</th>
+                            <th scope="col">Value</th>
+                            
+                            </tr>
+                    </thead>
+                    
+                    <tbody>
+                        
+                        <tr>
+                            <td scope="row">
+                                Annotation File
+                            </td>
+                            <td> {{ row.condition.condition.source_file}} </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">
+                                Temperature
+                            </td>
+                            <td> {{ row.condition.condition.temperature}} </td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">
+                                pH
+                            </td>
+                            <td> {{ row.condition.condition.ph}} </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                Pressure
+                            </td>
+                            <td> {{ row.condition.condition.pressure}} </td>
+                        </tr>
+                        
+                        <tr>
+                            <td scope="row">
+                                Agents
+                            </td>
+                            <td>{% for agent in row.condition.agents %} <a href="/agents/{{ agent.key }}">{{agent.name}}</a>, {%endfor%}</td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">
+                                Source
+                            </td>
+                            <td> <a href="/sources/{{ row.condition.sources.doi }}">{{ row.condition.sources.doi }}</a> </td>
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="section">
+        <h2 class="title is-2">Modules</h2>
+        {% for module in modules %}
+        <div class="card is-hoverable">
+            <header class="card-header">
+                <a href="/modules/{{ module.key }}">
+                    <p class="card-header-title">{{ module.key }}</p>
+                </a>
+                
+            </header>
+            <div class="card-content">
+                {{ module.description }}
+            </div>
+            
+                
+            
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+        
+{% endblock %}

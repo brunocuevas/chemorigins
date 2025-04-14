@@ -7,15 +7,17 @@ from prebchemdb.neoschema import Reactions, Molecules, Conditions, Agents, Sourc
 import os
 import time
 
-ibf = ImageBuffer(
-    db_path = os.environ['PREBCHEMDB_IMAGE_BUFFER'] + '/image-buffer.db',
-    save_path = os.environ['PREBCHEMDB_IMAGE_BUFFER']
-)
-ibf.create_table('reactions')
-ibf.create_table('module_diagrams')
-ibf.create_table('molecules')
+def create_image_buffer(path):
+    ibf = ImageBuffer(
+        db_path = path + '/image-buffer.db',
+        save_path = path 
+    )
+    ibf.create_table('reactions')
+    ibf.create_table('module_diagrams')
+    ibf.create_table('molecules')
+    return ibf
 
-
+ibf = create_image_buffer(os.environ['PREBCHEMDB_IMAGE_BUFFER'])
 
 def _reactions_from_molecule(query):
     molecule = Molecules.nodes.get(key=query)

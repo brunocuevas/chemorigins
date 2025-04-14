@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<style>
+  .custom-search-input {
+    max-width: 800px; /* Adjust the width as necessary */
+    margin: 0 auto; /* Center the input */
+    width: 600px;
+  }
+  .custom-container {
+    max-width: 1000px; /* Set your custom width */
+    margin: 0 auto;  /* Center it horizontally */
+  }
+  .colored-banner {
+      background-color: rgb(0,21,40);
+      background-image: url('/static/cubes.png'), linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(124,21,40,1) 100%); !important
+      background-repeat: repeat;
+      background-size: auto;
+      background-position: center;
+  }
+  .custom-texture {
+      background-color: linear-gradient(90deg, rgba(0,21,40,1) 0%, rgba(4,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(0,21,40,1) 100%);
+      background-image: url('path-to-your-texture.png'), linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%, rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%, rgba(124,21,40,1) 100%);; /* Path to your PNG file */
+      background-repeat: repeat; /* Repeats the pattern */
+      background-size: auto; /* Keeps the original size of the texture */
+      background-position: center; /* Centers the pattern */
+      background-color: #f5f5f5; /* Fallback background color */
+      background-repeat: repeat; /* Repeats the pattern */
+      background-size: 100px, 100px; /* Keeps the original size of the texture */
+      background-position: center; /* Centers the pattern */
+  }
+
+ </style>
+
+<!--<link href="{{  url_for('static', filename='/bulma/css/bulma.css') }}" rel="stylesheet">-->
+<link rel="stylesheet" href="https://unpkg.com/bulmaswatch/Lumen/bulmaswatch.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" data-theme="light">
+  <head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body class="has-navbar-fixed-top">
+    <nav class="navbar is-black is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <img src="/static/ChemOrigins-Logo-White.png" alt="">
+        </a>
+        <a class="navbar-item" href="/">
+          ChemOrigins
+          
+          
+        </a>
+        <div class="navbar-burger js-burger" data-target="mainnavbar">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+      </div>
+      <div id="mainnavbar" class="navbar-menu">
+        <div class="navbar-start">
+          <!-- <a class="navbar-item" href="/">
+            Search 
+          </a> -->
+          <a class="navbar-item" href="/modules">
+            Modules
+          </a>
+          <a class="navbar-item" href="/expansion/">
+            Expansion
+          </a>
+          <a class="navbar-item" href="/blog">
+            Blog
+          </a>
+          
+        </div>
+        
+        <div class="navbar-end">
+          <div class="navbar-item" style="width: 100%">
+            <form method="post">
+              <div class="field has-addons">
+                <div class="control is-expanded">
+                  {{ form.query(class="input", placeholder="Search...", style="width: 400px;") }}
+                </div>
+                <div class="control">
+                  <button class="button is-info" type="submit">
+                    Search
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      
+    
+      
+
+      <!-- <div class="navbar-end">
+        <div class="navbar-item is-flex">
+          <form method="post" class="is-flex">
+            <div class="field has-addons">
+              
+              <div class="control">
+                
+                    {{ form.query(class="input is-fullwidth", placeholder="Search...") }}
+              </div>                
+            </div>
+          </form>
+        </div>
+        
+      </div> -->
+      
+
+    </nav>
+    <!-- <div class="hero is-small is-warning">
+      <div class="hero-body">
+          <p>
+              We are collecting feedback! Please, fill out the form in this <a href="https://forms.fillout.com/t/2CXhdJVmKYus">link</a> and let us know what do you think
+              about this project!
+          </p>
+      </div>
+    </div> -->
+  
+    <div id="content">{% block content %}{% endblock %}</div>
+
+    <footer class="footer is-dark">
+      <div class="content has-text-centered">
+        <div class="container is-white">
+        <p>
+          <strong>ChemOrigins</strong> by Bruno Cuevas. The website content
+          is licensed <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3.0</a>.
+        </p>
+        <div class="columns">
+          <div class="column is-4"></div>
+          <div class="column is-4">
+            <div class="columns">
+
+              <div class="column is-4">
+                  <img src="/static/KacarLab-Logo_Circle-Black.png" alt="" width=60%>
+              </div>
+
+              <div class="column is-4">
+
+                  <img src="/static/MUSE-Logo_Patch-Black.png" alt="" width=60%>
+              </div>
+              <div class="column is-4">
+                  <img src="/static/black-center-UWlogo-print.png" alt="" width=100%>
+              </div>
+            </div>
+          </div>
+          <div class="column is-4"></div>
+        </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  </html>
+
+</html>
+
