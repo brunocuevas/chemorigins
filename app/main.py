@@ -1,22 +1,11 @@
 from flask import Flask, url_for, request, redirect
 from flask import render_template
 from wtforms import Form, SearchField
-from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _full_search_results, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function
+from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function
 from neomodel import config
 from flask_flatpages import FlatPages
 import json
 import os
-import time
-
-# DEBUG = True
-# FLATPAGES_AUTO_RELOAD = DEBUG
-# FLATPAGES_EXTENSION = '.md'
-# FLATPAGES_ROOT = 'blog'
-# POST_DIR = 'insights'
-# MOLECULE_OF_THE_MONTH_ROOT = 'molecules'
-# MOLECULE_OF_THE_MONTH = 'formamide'
-
-# config_file = 'config.json'
 
 app = Flask(__name__)
 
@@ -53,20 +42,23 @@ else:
 
 @app.route("/", methods=['POST', 'GET'])
 def home():
+    """
+    Provides access to the home-page, which consists only on an additional search bar; all
+    the other content is static.
+    """
     print("wellcome to main")
     form = SearchForm(request.form)
-
-    # path = '{}/{}'.format(app.config['MOLECULE_OF_THE_MONTH_ROOT'], app.config['MOLECULE_OF_THE_MONTH'])
-    
-    # molecule_of_the_moth_post = flatpages.get_or_404(path)
-    
     if request.method == 'POST' and form.validate():
         return redirect(url_for('search', query=form.query.data))
-    return render_template('home.html', form=form)# , motm=molecule_of_the_moth_post)
+    return render_template('home.html', form=form)
 
 
 @app.route("/molecules/<mol_id>", methods=['POST', 'GET'])
 def molecules(mol_id):
+    """
+    Provides access to molecules through their mol_id, which is under
+    the format pbm-XXXXXX. 
+    """
     context = _all_molecule_info(mol_id)
     form = SearchForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -76,12 +68,20 @@ def molecules(mol_id):
 
 @app.route("/api/molecules/<mol_id>")
 def api_molecules(mol_id):
+    """
+    Provides access to molecules through their mol_id, which is under
+    the format pbm-XXXXXX. Returns a json document.
+    """
     context = _all_molecule_info(mol_id)
     return context
 
 
 @app.route("/reactions/<reaction_id>", methods=['POST', 'GET'])
 def reactions(reaction_id):
+    """
+    Provides access to reactions through their mol_id, which is under
+    the format pbr-XXXXXX. 
+    """
     form = SearchForm(request.form)
     context = _all_reaction_info(reaction_id)
     similar_reactions = _find_similar_reactions(reaction_id)
@@ -93,6 +93,10 @@ def reactions(reaction_id):
 
 @app.route("/api/reactions/<reaction_id>")
 def api_reactions(reaction_id):
+    """
+    Provides access to reactions through their mol_id, which is under
+    the format pbr-XXXXXX.  Returns a json document.
+    """
     context = _all_reaction_info(reaction_id)
     similar_reactions = _find_similar_reactions(reaction_id)
     context['similar_reactions'] = similar_reactions['similar_reactions']
@@ -101,6 +105,10 @@ def api_reactions(reaction_id):
 
 @app.route("/agents/<agent_id>", methods=['POST', 'GET'])
 def agents(agent_id):
+    """
+    Provides access to agents through their agent_id, which is under the
+    format pba-XXXXXX. 
+    """
     form = SearchForm(request.form)
     context = _all_agent_info(agent_id)
     if request.method == 'POST' and form.validate():
@@ -110,12 +118,19 @@ def agents(agent_id):
 
 @app.route("/api/agents/<agent_id>")
 def api_agents(agent_id):
+    """
+    Provides access to agents through their agent_id, which is under the
+    format pba-XXXXXX. Returns a JSON document.
+    """
     context = _all_agent_info(agent_id)
     return context
 
 
 @app.route("/sources/<path:doi>", methods=['POST', 'GET'])
 def sources(doi):
+    """
+    Provides access to sources through their doi. 
+    """
     form = SearchForm(request.form)
     context = _all_source_info(doi)
     if request.method == 'POST' and form.validate():
@@ -125,13 +140,18 @@ def sources(doi):
 
 @app.route("/api/sources/<path:doi>")
 def api_sources(doi):
-    
+    """
+    Provides access to sources through their doi. Returns a JSON document
+    """
     context = _all_source_info(doi)
     return context
 
 
 @app.route("/modules/", methods=['POST', 'GET'])
 def modules_index():
+    """
+    Lists all the modules in an index-page.
+    """
     form = SearchForm(request.form)
     context = _index_modules()
     if request.method == 'POST' and form.validate():
@@ -141,12 +161,19 @@ def modules_index():
 
 @app.route("/api/modules/")
 def api_modules_index():
+    """
+    Lists all the modules, returning a JSON document.
+    """
     context = _index_modules()
     return context
 
 
 @app.route("/modules/<code>", methods=['POST', 'GET'])
 def modules(code):
+    """
+    Returns a specific module, identified by the module id, which is
+    usually under the format pbmdl-XXXXXX.
+    """
     form = SearchForm(request.form)
     context = _obtain_module(code)
     if request.method == 'POST' and form.validate():
@@ -156,6 +183,10 @@ def modules(code):
 
 @app.route("/api/modules/<code>")
 def api_modules(code):
+    """
+    Returns a specific module, identified by the module id, which is
+    usually under the format pbmdl-XXXXXX. Returns a JSON file.
+    """
     context = _obtain_module(code)
     return context
 
@@ -163,6 +194,10 @@ def api_modules(code):
 @app.route("/expansion/<seeds>", methods=['POST', 'GET'])
 @app.route("/expansion/", methods=['POST', 'GET'])
 def expansion(seeds=None):
+    """
+    Runs a network expansion algorithm on a set of molecular entries
+    separated by a dot. For instance, pbm-000032.pbm-0001459.pbm-000123.
+    """
     context = dict()
     
     form = SearchForm(request.form)
@@ -194,6 +229,11 @@ def expansion(seeds=None):
 
 @app.route("/api/expansion/<codes>")
 def api_expansion(codes):
+    """
+    Runs a network expansion algorithm on a set of molecular entries
+    separated by a dot. For instance, pbm-000032.pbm-0001459.pbm-000123.
+    Returns a JSON file.
+    """
     codes = codes.split('.')
     context = _expansion_operator(codes)
     return context
@@ -202,12 +242,11 @@ def api_expansion(codes):
 
 @app.route("/search/", methods=['POST', 'GET'])
 def search():
+    """
+    Runs a search using different fields. ´_new_search_function´ handles
+    the task of detecting which kind of query was introduced. 
+    """
     query = request.args.get('query', None)
-    # include_reactions = request.args.get('reactions', type=lambda x: x == 'True', default=True)
-    # include_molecules = request.args.get('molecules', type=lambda x: x == 'True', default=True)
-    # min_temperature = request.args.get('mintemp', type=float, default=None)
-    # max_temperature = request.args.get('maxtemp', type=float, default=None)
-    
     app.logger.info('searching "{0}" using _new_search_function'.format(query))
     context = _new_search_function(query)
     app.logger.info('returning results for "{0}" using _new_search_function'.format(query))
@@ -221,22 +260,13 @@ def search():
 
 @app.route("/api/search/<query>")
 def api_search(query):
-    
+    """
+    Runs a search using different fields. ´_new_search_function´ handles
+    the task of detecting which kind of query was introduced. Returns a JSON file.
+    """
     context = _new_search_function(query)
     return context
 
-@app.route("/blog/<entry_id>")
-def blog(entry_id):
-    path = '{}/{}'.format(app.config['POST_DIR'], entry_id)
-    
-    post = flatpages.get_or_404(path)
-    return render_template('blog.html', post=post)
-
-@app.route("/blog/")
-def blog_index():
-    posts = [p for p in flatpages]
-    
-    return render_template('blog_index.html', posts=posts)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
