@@ -3,20 +3,15 @@ from flask import render_template
 from wtforms import Form, SearchField
 from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function
 from neomodel import config
-from flask_flatpages import FlatPages
 import json
 import os
 import neo4j
 
 app = Flask(__name__)
 
-with open('config.json') as f:
-    app.config.update(json.load(f))
-
-flatpages = FlatPages(app)
-app.config.from_object(__name__)
 try:
     config.DATABASE_URL = "neo4j+s://neo4j:{0}@{1}".format(os.environ['NEO4J_KEY'], os.environ['NEO4J_URL'])
+    _index_modules()
     print("using secure http+ssl protocol")
 except neo4j.exceptions.ServiceUnavailable:
     config.DATABASE_URL = "neo4j://neo4j:{0}@{1}".format(os.environ['NEO4J_KEY'], os.environ['NEO4J_URL'])
@@ -34,12 +29,12 @@ class SearchForm(Form):
 class ExpansionSearchForm(Form):
     expquery = SearchField(label='expansion_query')
 
-if os.path.exists(app.config['PREBCHEMDB_IMAGE_BUFFER'] + '/image-buffer.db'):
-    ibf.db_path = app.config['PREBCHEMDB_IMAGE_BUFFER'] + '/image-buffer.db'
-    ibf.save_path = app.config['PREBCHEMDB_IMAGE_BUFFER']
+if os.path.exists(os.environ['PREBCHEMDB_IMAGE_BUFFER'] + '/image-buffer.db'):
+    ibf.db_path = os.environ['PREBCHEMDB_IMAGE_BUFFER'] + '/image-buffer.db'
+    ibf.save_path = os.environ['PREBCHEMDB_IMAGE_BUFFER']
 else:
-    ibf.db_path = app.config['PREBCHEMDB_IMAGE_BUFFER'] + '/image-buffer.db'
-    ibf.save_path = app.config['PREBCHEMDB_IMAGE_BUFFER']
+    ibf.db_path = os.environ['PREBCHEMDB_IMAGE_BUFFER'] + '/image-buffer.db'
+    ibf.save_path = os.environ['PREBCHEMDB_IMAGE_BUFFER']
     ibf.create_table('molecules')
     ibf.create_table('reactions')
     ibf.create_table('modules')
