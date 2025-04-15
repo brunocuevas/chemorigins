@@ -6,6 +6,7 @@ from neomodel import config
 from flask_flatpages import FlatPages
 import json
 import os
+import neo4j
 
 app = Flask(__name__)
 
@@ -14,8 +15,12 @@ with open('config.json') as f:
 
 flatpages = FlatPages(app)
 app.config.from_object(__name__)
-config.DATABASE_URL = "neo4j+s://neo4j:{0}@{1}".format(os.environ['NEO4J_KEY'], os.environ['NEO4J_URL'])
-
+try:
+    config.DATABASE_URL = "neo4j+s://neo4j:{0}@{1}".format(os.environ['NEO4J_KEY'], os.environ['NEO4J_URL'])
+    print("using secure http+ssl protocol")
+except neo4j.exceptions.ServiceUnavailable:
+    config.DATABASE_URL = "neo4j://neo4j:{0}@{1}".format(os.environ['NEO4J_KEY'], os.environ['NEO4J_URL'])
+    print("using not-secure http protocol")
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
