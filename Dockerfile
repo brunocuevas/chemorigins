@@ -40,8 +40,7 @@ ENV PREBCHEMDB_IMAGE_BUFFER=static/
 
 
 # Expose the port the app runs on
-EXPOSE 8888
+EXPOSE 8000
 WORKDIR app/
 # Command to run the application
-CMD ["flask", "--app", "main.py", "run", "--port", "8888", "--host", "0.0.0.0"]
-
+CMD ["gunicorn", "--workers", "1", "-m", "007", "wsgi:app"]

@@ -1,5 +1,5 @@
 from flask import Flask, url_for, request, redirect
-from flask import render_template
+from flask import render_template, Response, abort
 from wtforms import Form, SearchField
 from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function
 from neomodel import config
@@ -248,10 +248,16 @@ def search():
     """
     query = request.args.get('query', None)
     app.logger.info('searching "{0}" using _new_search_function'.format(query))
-    context = _new_search_function(query)
-    app.logger.info('returning results for "{0}" using _new_search_function'.format(query))
-    form = SearchForm(request.form)
     
+    form = SearchForm(request.form)
+    try:
+        context = _new_search_function(query)
+    except Exception:
+        
+        abort(500)
+        return ""
+        
+    app.logger.info('returning results for "{0}" using _new_search_function'.format(query))
     if request.method == 'POST':
         
         return redirect(url_for('search', query=form.query.data))
@@ -267,6 +273,16 @@ def api_search(query):
     context = _new_search_function(query)
     return context
 
+@app.errorhandler(404)
+def page_not_found(e):
+    form = SearchForm(request.form)
+    return render_template('not_found.html', form=form), 404
+
+@app.errorhandler(500)
+def internal_error(e):
+    print("error 500 detected")
+    form = SearchForm(request.form)
+    return render_template('not_found.html', form=form), 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
