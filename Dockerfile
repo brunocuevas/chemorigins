@@ -43,4 +43,4 @@ ENV PREBCHEMDB_IMAGE_BUFFER=static/
 EXPOSE 8000
 WORKDIR app/
 # Command to run the application
-CMD ["gunicorn", "--workers", "1", "-m", "007", "wsgi:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "1", "-m", "007", "wsgi:app"]
