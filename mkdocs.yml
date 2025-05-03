@@ -1,0 +1,15 @@
+site_name: ChemOrigins Docs
+site_url: https://chemorigins.bact.wisc.edu/docs
+theme:
+  name: material
+  palette:
+    primary: black
+  logo: ChemOrigins-Logo-White.png 
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/chemorigins
+
+copyright: 
