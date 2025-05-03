@@ -8,31 +8,29 @@ import json
 def convert_to_legacy_annotation(annotation):
 
     conditions = []
-    if annotation['digest']['temperature'] is not None:
-        conditions.append("T={0}".format(annotation['digest']['temperature']))
+    if annotation['temperature'] is not None:
+        conditions.append("T={0}".format(annotation['temperature']))
 
-    if annotation['digest']['yield_'] is not None:
-        conditions.append("yield={0}".format(annotation['digest']['yield_']))
+    if annotation['yield'] is not None:
+        conditions.append("yield={0}".format(annotation['yield_']))
 
-    if annotation['digest']['pH'] is not None:
-        conditions.append("pH={0}".format(annotation['digest']['pH']))
+    if annotation['pH'] is not None:
+        conditions.append("pH={0}".format(annotation['pH']))
 
-    if annotation['digest']['time'] is not None:
-        conditions.append("time={0}".format(annotation['digest']['time']))
+    if annotation['time'] is not None:
+        conditions.append("time={0}".format(annotation['time']))
     
-    if annotation['digest']['agents'] is None:
-        annotation['digest']['agents'] = []
 
     l_annotation = {
-        "agents": annotation['digest']['agents'],
+        "agents": annotation['agents'],
         "attributes": "",
         "comments": "",
         "conditions": [],
         "crossref": [],
         "date_": date.today().isoformat(),
         "key": date.today().isoformat() + ":" + annotation['id'],
-        "primary": annotation['text'],
-        "smiles": annotation['reaction_string'],
+        "primary": annotation['reaction'],
+        "smiles": annotation['reaction'],
         "source": annotation['doi'],
         "waste": []
     }

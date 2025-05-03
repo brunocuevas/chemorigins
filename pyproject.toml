@@ -19,6 +19,12 @@ dependencies = [
     "gunicorn>=23.0.0",
     "waitress>=3.0.2",
     "mkdocs-material>=9.6.12",
+    "streamlit>=1.45.0",
+    "langchain>=0.3.25",
+    "pygithub>=2.6.1",
+    "langchain-openai>=0.3.16",
+    "gitpython>=3.1.44",
+    "streamlit-tags>=1.2.8",
 ]
 
 [build-system]
