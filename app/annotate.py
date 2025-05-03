@@ -10,6 +10,7 @@ from datetime import date
 import os
 import json
 from git import Repo
+import git
 import requests
 
 
@@ -82,7 +83,10 @@ if not 'git_started' in st.session_state.keys():
 
     tokken = os.environ['GITHUB_TOKKEN']
     repo_url = f'https://{tokken}:x-oauth-basic@github.com/brunocuevas/test-prebchemdb-data.git'
-    repo = Repo.clone_from(repo_url, LOCAL_DIR)
+    try:
+        repo = Repo.clone_from(repo_url, LOCAL_DIR)
+    except git.exc.GitCommandError:
+        pass
     st.session_state['git_started'] = True
     # with open('config.yaml', 'w') as file:
     #     yaml.dump(config, file)
