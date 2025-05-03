@@ -1,7 +1,6 @@
 import streamlit as st
-from streamlit_tags import st_tags
 from prebchemdb.ai import query_text, MoleculeBuffer
-from prebchemdb.format import branch, publication_metadata, wrap
+from prebchemdb.format import publication_metadata, wrap
 import rdkit.Chem as chem 
 import rdkit.Chem.rdChemReactions as rdr
 import rdkit.Chem.Draw as draw
@@ -10,6 +9,29 @@ from yaml.loader import SafeLoader
 from datetime import date
 import os
 import json
+from git import Repo
+import requests
+
+
+def branch(annotations, path):
+    repo = Repo(path)
+    add_file = []
+    dump_name = "dump-" + date.today().isoformat() + os.urandom(6).hex()
+    for annotation in annotations:
+        file_name = annotation['key']
+        json.dump(annotation, open(path + file_name + '.json', 'w'), indent=4)
+        add_file.append(path + file_name + '.json')
+
+    new_branch = repo.create_head(dump_name)
+    repo.head.reference = new_branch
+    # empty_repo.heads.master.checkou
+    
+    repo.index.add( add_file ) 
+    repo.index.commit(f"adding {len(annotation)} annotations")
+    #repo.create_remote(f"origin {file_name}", repo.remotes.origin.url)
+    # origin = repo.remotes.origin
+    repo.git.push("--set-upstream","origin",f"{dump_name}")
+    return dump_name
 
 
 def convert_to_legacy_annotation(annotation):
@@ -33,8 +55,8 @@ def convert_to_legacy_annotation(annotation):
 
     l_annotation = {
         "agents": annotation['agents'],
-        "attributes": "",
-        "comments": "",
+        "attributes": annotation['attributes'],
+        "comments": "\nAnnotation by annotation-app",
         "conditions": conditions,
         "crossref": [],
         "date_": date.today().isoformat(),
@@ -54,6 +76,16 @@ def clean_annotation(i):
 
 
 LOCAL_DIR = os.getcwd() + '/data/'
+
+
+if not 'git_started' in st.session_state.keys():
+
+    tokken = os.environ['GITHUB_TOKKEN']
+    repo_url = f'https://{tokken}:x-oauth-basic@github.com/brunocuevas/test-prebchemdb-data.git'
+    repo = Repo.clone_from(repo_url, LOCAL_DIR)
+    st.session_state['git_started'] = True
+    # with open('config.yaml', 'w') as file:
+    #     yaml.dump(config, file)
 
 # with open('config.yaml') as file:
 #     config = yaml.load(file, Loader=SafeLoader)
@@ -93,15 +125,17 @@ mdb = load_molecule_buffer()
 
 
 
-
-if button_container.button('compile', type="primary"):
+col1, col2 = button_container.columns(2)
+if col1.button('compile', type="primary"):
     annotations = list(map(convert_to_legacy_annotation, st.session_state['annotations']))
-    # branch_name = branch(annotations, LOCAL_DIR)
-    with open(LOCAL_DIR + "/annotations." + date.today().isoformat() + ".json", 'w') as f:
-        json.dump(annotations, f, indent=4)
-    
-    # st.info(f"Congratulations! Your branch was pushed as {branch_name}")
+    branch_name = branch(annotations, LOCAL_DIR)
+
+    st.info(f"Congratulations! Your branch was pushed as {branch_name}")
     st.balloons()
+
+if col2.button("download", type="secondary"):
+    st.write(list(map(convert_to_legacy_annotation, st.session_state['annotations']))),
+    
 
 new_annotation = {
 
@@ -150,15 +184,18 @@ with st.container(border=True):
         new_annotation['wavelength'] = None
 
 
-    new_annotation['attributes'] = st.text_area(label="Additional attributes (this can be helpful for later curation)", value="")
+    new_annotation['attributes'] = st.text_area(label="Additional comments (this can be helpful for later curation)", value="")
 
     new_annotation['id'] = '{:03d}'.format(st.session_state['current-id'] + 1)
 
 
     st.session_state['current-id'] += 1
     if st.button('submit') and new_annotation['doi'] != "":
-        pub = publication_metadata(new_annotation['doi'])
-        st.session_state['annotations'].append(new_annotation)
+        try:
+            pub = publication_metadata(new_annotation['doi'])
+            st.session_state['annotations'].append(new_annotation)
+        except requests.exceptions.JSONDecodeError:
+            st.error("Unable to find doi {0}".format(new_annotation['doi']))
         
 
 for i, annotation in enumerate(st.session_state['annotations']):
