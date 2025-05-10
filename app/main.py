@@ -9,18 +9,18 @@ import neo4j
 
 app = Flask(__name__)
 
-try:
-    secure_url = "bolt+s://neo4j:{0}@{1}".format(os.environ['NEO4J_KEY'], os.environ['NEO4J_URL'])
-    print(secure_url)
-    config.DATABASE_URL = secure_url
-    _index_modules()
-    print("using secure http+ssl protocol")
-except neo4j.exceptions.ServiceUnavailable:
-    unsecure_url = "bolt://neo4j:{0}@{1}".format(os.environ['NEO4J_KEY'], os.environ['NEO4J_URL'])
-    print(unsecure_url)
-    config.DATABASE_URL = unsecure_url
-    print("using not-secure http protocol")
-    _index_modules()
+def try_connect(url):
+    try:
+        config.DATABASE_URL = url
+        _index_modules()  # Only call this if the connection succeeds
+        return True
+    except Exception as e:
+        return False
+
+url = "{2}://neo4j:{0}@{1}".format(os.environ['NEO4J_KEY'], os.environ['NEO4J_URL'], os.environ['NEO4J_MODE'])
+print(url)
+if not try_connect(url):
+	raise RuntimeError("Failed to connect to Neo4j ")
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
