@@ -5,6 +5,7 @@ from io import BytesIO
 import requests
 from PIL import Image
 import base64
+import os
 
 def reaction_smiles_to_base64(smiles):
     buff = BytesIO()
@@ -35,12 +36,15 @@ def network_to_diagram(reactions):
             graph += '  {0}["{1}"] --> {2};\n'.format(mol['key'], mol['title'], reaction['reaction']['key'])
         for mol in reaction['products']:
             graph += '  {2} --> {0}["{1}"];\n'.format(mol['key'], mol['title'], reaction['reaction']['key'])
-    
+
+    print(graph)
     graphbytes = graph.encode("utf8")
     base64_bytes = base64.b64encode(graphbytes)
     base64_string = base64_bytes.decode("ascii")
     # img_data = Image.open()
-    response = requests.get("https://mermaid.ink/img/" + base64_string)
+    url = os.environ['MERMAID_ENDPOINT'] + base64_string
+    print(url)
+    response = requests.get(url)
     img = Image.open(BytesIO(response.content))
 
     return img
