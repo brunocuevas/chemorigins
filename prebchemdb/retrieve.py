@@ -6,6 +6,9 @@ from neomodel import db
 from prebchemdb.neoschema import Reactions, Molecules, Conditions, Agents, Sources, PrebChemDBModule
 import os
 import time
+import logging
+
+
 
 def create_image_buffer(path):
     ibf = ImageBuffer(
@@ -464,13 +467,45 @@ def _expansion_operator(seeds):
         m['img'] = ibf.generate_molecule_image(entry=molecule['key'], smiles=molecule['smiles'])
         m.update(**dict(molecule))
         products.append(m)
-
+    reactions_all_info=[_all_reaction_info(r['key']) for r in reactions]
+    diagram = ibf.generate_diagram(".".join(seeds), reactions=reactions_all_info)
     return {
         'seeds': seeds,
         'reactions': reactions,
-        'reactants': reactants,
-        'products': products
+        'molecules': reactants + products,
+        'img': diagram
     }
+
+def _expansion_operator_iteration(seeds):
+    out, meta = db.cypher_query(
+        """MATCH (n:Molecules)-[:REACTS_IN]->(r:Reactions) 
+        WITH r, collect(n.key) AS reactants
+        WHERE ALL(x IN reactants WHERE x IN $seeds)
+        MATCH (m:Molecules)-[:REACTS_IN]->(r:Reactions)-[:REACTS_OUT]->(p:Molecules)
+        RETURN COLLECT(DISTINCT(p.key))""", params={
+            'seeds': seeds
+        }
+    )
+    return list(set(seeds + out[0][0]))
+
+def _iterative_expansion_operator(seeds, max_iterations=10):
+    logging.debug("starting expansion, seed set size {0}".format(len(seeds)))
+    logging.debug(
+        "the expansion will run for {0} iterations or it will stop if expansions stop growing".format(
+            max_iterations
+        )
+    )
+    pool = seeds.copy()
+    last_size = len(seeds)
+    for i in range(max_iterations):
+        pool = _expansion_operator_iteration(pool)
+        logging.debug("iteration {0}, size {1}".format(i, len(pool)))
+        if len(pool) == last_size:
+            logging.debug("no expansion growth, stopping algorithm")
+            break
+        else:
+            last_size = len(pool)
+    return _expansion_operator(pool)
 
 
 def _new_search_function(q):

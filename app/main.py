@@ -1,7 +1,7 @@
 from flask import Flask, url_for, request, redirect
 from flask import render_template, Response, abort
 from wtforms import Form, SearchField
-from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function
+from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function, _iterative_expansion_operator
 from neomodel import config
 import json
 import os
@@ -215,7 +215,7 @@ def expansion(seeds=None):
     else:
         context['search_flag'] = True
         seeds = seeds.split('.')
-        context.update(**_expansion_operator(seeds))
+        context.update(**_iterative_expansion_operator(seeds))
         context['seeds'] = ' + '.join(seeds)
 
     if request.method == 'POST' and form.query.data is not None:
@@ -240,7 +240,7 @@ def api_expansion(codes):
     Returns a JSON file.
     """
     codes = codes.split('.')
-    context = _expansion_operator(codes)
+    context = context.update(**_iterative_expansion_operator(codes))
     return context
 
 

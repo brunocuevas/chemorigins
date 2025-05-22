@@ -1,7 +1,7 @@
 import sqlite3
 from PIL import Image
 from prebchemdb.depict import ReactionToImage, ReactionFromSmarts, MolFromSmiles, MolToImage, network_to_diagram
-
+import pandas as pd
 
 class ImageBuffer:
 

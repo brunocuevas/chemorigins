@@ -1,8 +1,5 @@
-
 {% extends "base.html" %}
-
 {% block content %}
-
 <style>
     .custom-container {
       max-width: 1000px; /* Set your custom width */
@@ -27,8 +24,14 @@
         background-size: 100px, 100px; /* Keeps the original size of the texture */
         background-position: center; /* Centers the pattern */
     }
+    .custom-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%; /* Adjust as needed */
+    }
 
- </style>
+</style>
 
 <div class="hero is-black colored-banner ">
     <div class="hero-body custom-container">
@@ -51,74 +54,45 @@
     </div>
 </div> 
 {% if search_flag == True %}
-    <div class="custom-container">
-        <div class="section">
-            <h2 class="title is-2">Results for "{{seeds}}"</h3>
-            <a class="button is-dark" href="/api/expansion/{{ seeds }}">Download</a>
-        </div>    
-        <div class="section">
-            <h3 class="title is-2">Reactants</h3>
-            <div class="grid">
-            {% for molecule in reactants %}
-                
+<div class="custom-container">
+    <div class="section">
+        <h2 class="title is-2">Results for "{{seeds}}"</h3>
+        <a class="button is-dark" href="/api/expansion/{{ seeds }}">Download</a>
+    </div>
+    <div class="columns">
+        <div class="column is-one-third">
+            <h3 class="title is-2">Diagram</h3>
+            <img src="/static/{{img}}" alt="" class="box" width="100%">
+        </div>
+        <div class="column is-two-thirds">
+            <h3 class="title is-2">Molecules</h3>
+            <div class="columns is-multiline">
+            {% for molecule in molecules %}
+                <div class="column is-one-third">              
                     <div class="card" style="width: 200px;">
                         <header class="card-header">
                             <a href="/molecules/{{ molecule.key }}">
                                 <p class="card-header-title">Molecule: {{ molecule.title }}</p>
                             </a>
-
                         </header>
-                        
                         <img src="/static/{{molecule.img}}" alt="" class="card-image" width="200px">
-                        
                     </div>
-                
-            
+                </div>
             {% endfor %}
             </div>
-        </div>
-
-        <div class="section">
-            <h3 class="title is-2">Products</h3>
-            <div class="grid">
-            {% for molecule in products %}
-                
-                    <div class="card" style="width: 200px;">
-                        <header class="card-header">
-                            <a href="/molecules/{{ molecule.key }}">
-                                <p class="card-header-title">Molecule: {{ molecule.title }}</p>
-                            </a>
-
-                        </header>
-                        
-                        <img src="/static/{{molecule.img}}" alt="" class="card-image" width="200px">
-                        
-                    </div>
-                
-            
-            {% endfor %}
-            </div>
-        </div>
-            
-                
-        <div class="section">
-            <h2 class="title is-2">Reactions</h2>
-
-            {% for reaction in reactions %}
-                
-            <div class="card is-hoverable">
-                <header class="card-header">
-                    <a href="/reactions/{{ reaction.key }}">
-                        <p class="card-header-title">{{ reaction.key }}</p>
-                    </a>
-
-                </header>
-                <img src="/static/{{ reaction.img }}" alt="" class="card-image">
-                
-            </div>
-            {% endfor %}
         </div>
     </div>
+    <h2 class="title is-2">Reactions</h2>
+    {% for reaction in reactions %}
+    <div class="card is-hoverable">
+        <header class="card-header">
+            <a href="/reactions/{{ reaction.key }}">
+                <p class="card-header-title">{{ reaction.key }}</p>
+            </a>
+        </header>
+        <img src="/static/{{ reaction.img }}" alt="" class="card-image">
+    </div>
+    {% endfor %}
+</div>
 {% endif %}
-
 {% endblock %}
