@@ -29,13 +29,14 @@ def network_to_diagram(reactions):
     reactions should be a list with entries with exactly the same format as provided by _all_reaction_info
     """
     graph = """graph TB;\n"""
-
+    graph += "classDef mol fill:#74abeb,stroke:#000,stroke-width:1px,color:#fff;\n"
+    graph += "classDef reaction fill:#ebb974,stroke:#000,stroke-width:1px,color:#fff;\n"
     for reaction in reactions:
 
         for mol in reaction['reactants']:
-            graph += '  {0}["{1}"] --> {2};\n'.format(mol['key'], mol['title'], reaction['reaction']['key'])
+            graph += '  {0}["{1}"]:::mol --> {2}:::reaction;\n'.format(mol['key'], mol['title'], reaction['reaction']['key'])
         for mol in reaction['products']:
-            graph += '  {2} --> {0}["{1}"];\n'.format(mol['key'], mol['title'], reaction['reaction']['key'])
+            graph += '  {2}:::reaction --> {0}["{1}"]:::mol;\n'.format(mol['key'], mol['title'], reaction['reaction']['key'])
 
     print(graph)
     graphbytes = graph.encode("utf8")
