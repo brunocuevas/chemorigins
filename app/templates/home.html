@@ -27,6 +27,20 @@
         background-position: center; /* Centers the pattern */
     }
 
+    .black-table {
+      background-color: black;
+    }
+
+    .black-table table {
+      width: 100%;
+    }
+
+    .black-table th,
+    .black-table td {
+      color: white;
+      border-color: white;
+      background-color: black;
+    }
  </style>
 
   
@@ -68,27 +82,9 @@
         </div>
         
     </div>
-    
-  
+
 </div>
 
-<div class="hero">
-    <div class="hero-body">
-        <div class="custom-container">
-
-            <!-- <div class="section"> -->
-                <!-- <h1 class="title is-2"> Search </h1> -->
-                <!-- <p class="subtitle">
-                    Our comprehensive database of the current knowledge of
-                    prebiotic chemistry allows search by either molecule names (e.g. pyruvate)
-                    SMILES notation (e.g. CC(=O)C(=O)O ), or just the plain identifier (pbm-000032)
-                </p> -->
-                
-                
-            <!-- </div> -->
-        </div>
-    </div>
-</div>
 
 
 <div class="custom-container">
@@ -192,11 +188,49 @@
         </div>
         
     </div>
+
+    
 </div>
 
+<div class="hero is-black">
+    <div class="hero-body ">
+    <div class="custom-container">
+    <h1 class="title">ChemOrigins statistics</h1>
+    <div class="black-table">
+        <table class="table">
+        
+        <tr>
+            <td>Number of Reactions</td>
+            <td>{{ reactions }}</td>
+        </tr>
+        <tr>
+            <td>Number of Molecules</td>
+            <td>{{ molecules }}</td>
+        </tr>
+        <tr>
+            <td>Number of Agents</td>
+            <td>{{ agents }}</td>
+        </tr>
+        <tr>
+            <td>Number of Conditions</td>
+            <td>{{ conditions }}</td>
+        </tr>
+        <tr>
+            <td>Number of Modules</td>
+            <td>{{ modules }}</td>
+        </tr>
+        <tr>
+            <td>Number of Sources</td>
+            <td>{{ sources }}</td>
+        </tr>
 
+        
 
-
+    </table>
+    </div>
+    </div>
+    </div>
+</div>
     
 
 
