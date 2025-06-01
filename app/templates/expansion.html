@@ -30,6 +30,28 @@
         align-items: center;
         height: 100%; /* Adjust as needed */
     }
+    .custom-image {
+        max-width: 600px;
+        max-height: 150px;
+        align-items: center;
+    }
+    .custom-image-container {
+      min-width: 600px;
+      min-height: 150px;
+      position: relative;
+      overflow: hidden;
+    }
+    .custom-image-container img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
 
 </style>
 
@@ -39,7 +61,7 @@
             <h1 class="title is-1"> Expansion </h1>
             <p>
                 In this page, you can explore the chemical space spanned by some reactants by
-                introducing their codes one by one, separated by a dot. Example: "pbm-000143.pbm-000120"
+                introducing their codes one by one, separated by a dot. Example: "pbm-000068.pbm-000047.pbm-000030."
             </p>
             <br>
             <div class="field">
@@ -50,6 +72,10 @@
                     </form>
                 </div>
             </div>
+            <p>
+                Please, note that expansions are expensive search operations, so we limit the output
+                to three iterations or 8 compounds.
+            </p>
         </div>
     </div>
 </div> 
@@ -90,7 +116,9 @@
                 <p class="card-header-title">{{ reaction.key }}</p>
             </a>
         </header>
-        <img src="/static/{{ reaction.img }}" alt="" class="card-image">
+        <div class="custom-image-container">
+            <img src="/static/{{ reaction.img }}" alt="" class="card-image">
+        </div>
     </div>
     {% endfor %}
 </div>

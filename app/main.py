@@ -215,7 +215,7 @@ def expansion(seeds=None):
     else:
         context['search_flag'] = True
         seeds = seeds.split('.')
-        context.update(**_iterative_expansion_operator(seeds))
+        context.update(**_iterative_expansion_operator(seeds, max_iterations=2, max_seeds=8))
         context['seeds'] = ' + '.join(seeds)
 
     if request.method == 'POST' and form.query.data is not None:
@@ -240,7 +240,7 @@ def api_expansion(codes):
     Returns a JSON file.
     """
     codes = codes.split('.')
-    context = context.update(**_iterative_expansion_operator(codes))
+    context = context.update(**_iterative_expansion_operator(codes, max_iterations=2, max_seeds=8))
     return context
 
 

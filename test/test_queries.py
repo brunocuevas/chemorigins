@@ -78,7 +78,10 @@ class TestQueries(unittest.TestCase):
 
     def test_iterative_expansion_operator(self):
         from prebchemdb.retrieve import _iterative_expansion_operator
-        u = _iterative_expansion_operator("pbm-000068.pbm-000047.pbm-000030".split('.'), max_iterations=10)
+        # u = _iterative_expansion_operator("pbm-000068.pbm-000047.pbm-000030".split('.'), max_iterations=10)
+        # print(json.dumps(u, indent=4, sort_keys=True))
+        # self.assertEqual(1, 1)
+        u = _iterative_expansion_operator("pbm-000120.pbm-000143".split('.'), max_iterations=2, max_seeds=8)
         print(json.dumps(u, indent=4, sort_keys=True))
         self.assertEqual(1, 1)
 

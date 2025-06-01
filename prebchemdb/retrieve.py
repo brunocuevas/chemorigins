@@ -488,7 +488,7 @@ def _expansion_operator_iteration(seeds):
     )
     return list(set(seeds + out[0][0]))
 
-def _iterative_expansion_operator(seeds, max_iterations=10):
+def _iterative_expansion_operator(seeds, max_iterations=3, max_seeds=18):
     logging.debug("starting expansion, seed set size {0}".format(len(seeds)))
     logging.debug(
         "the expansion will run for {0} iterations or it will stop if expansions stop growing".format(
@@ -502,6 +502,9 @@ def _iterative_expansion_operator(seeds, max_iterations=10):
         logging.debug("iteration {0}, size {1}".format(i, len(pool)))
         if len(pool) == last_size:
             logging.debug("no expansion growth, stopping algorithm")
+            break
+        elif len(pool) > max_seeds:
+            logging.debug("reached maximum extension")
             break
         else:
             last_size = len(pool)
