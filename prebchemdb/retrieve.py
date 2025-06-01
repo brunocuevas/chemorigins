@@ -590,3 +590,52 @@ def _new_search_function(q):
         "agents": agents,
         "sources": sources
     }
+
+def database_statistics():
+
+    nmolecules, _ = db.cypher_query(
+        """
+        MATCH (a:Molecules) 
+        RETURN COUNT(a) AS MOLECULES
+        """
+    )
+    nreactions, _ = db.cypher_query(
+        """
+        MATCH (a:Reactions) 
+        RETURN COUNT(a) AS REACTIONS
+        """
+    )
+    nagents, _ = db.cypher_query(
+        """
+        MATCH (a:Agents) 
+        RETURN COUNT(a) AS AGENTS
+        """
+    )
+    nconditions, _ = db.cypher_query(
+        """
+        MATCH (a:Conditions) 
+        RETURN COUNT(a) AS CONDITIONS
+        """
+    )
+    nsources, _ = db.cypher_query(
+        """
+        MATCH (a:Sources) 
+        RETURN COUNT(a) AS SOURCES
+        """
+    )
+    nmodules, _ = db.cypher_query(
+        """
+        MATCH (a:PrebChemDBModule) 
+        RETURN COUNT(a) AS MODULES
+        """
+    )
+    return {
+        "reactions": nreactions[0][0],
+        "molecules": nmolecules[0][0],
+        "agents": nagents[0][0],
+        "conditions": nconditions[0][0],
+        "sources": nsources[0][0],
+        "modules": nmodules[0][0]
+    }
+
+    

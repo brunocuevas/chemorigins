@@ -1,7 +1,7 @@
 from flask import Flask, url_for, request, redirect
 from flask import render_template, Response, abort
 from wtforms import Form, SearchField
-from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function, _iterative_expansion_operator
+from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function, _iterative_expansion_operator, database_statistics
 from neomodel import config
 import json
 import os
@@ -51,11 +51,11 @@ def home():
     Provides access to the home-page, which consists only on an additional search bar; all
     the other content is static.
     """
-    print("wellcome to main")
+    context = database_statistics()
     form = SearchForm(request.form)
     if request.method == 'POST' and form.validate():
         return redirect(url_for('search', query=form.query.data))
-    return render_template('home.html', form=form)
+    return render_template('home.html', form=form, **context)
 
 
 @app.route("/molecules/<mol_id>", methods=['POST', 'GET'])

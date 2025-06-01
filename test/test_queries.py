@@ -85,5 +85,13 @@ class TestQueries(unittest.TestCase):
         print(json.dumps(u, indent=4, sort_keys=True))
         self.assertEqual(1, 1)
 
+    def test_retrieve_statistics(self):
+
+        from prebchemdb.retrieve import database_statistics
+        u = database_statistics()
+        print(u)
+        self.assertIn("molecules", u.keys())
+        self.assertGreaterEqual(u['molecules'], 0)
+
 if __name__ == '__main__':
     unittest.main()
