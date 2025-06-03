@@ -2,7 +2,7 @@
 
 ## Wellcome
 
-![ChemOrigins-Logo-White.png](ChemOrigins-Logo-White.png)
+<img src="ChemOrigins-Logo-White.png" alt="Repository Logo" width="200"/>
 
 Wellcome to ChemOrigins, a database for the origin of life.
  
