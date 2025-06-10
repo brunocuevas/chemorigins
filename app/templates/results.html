@@ -105,7 +105,7 @@
                                 <td>{{ ca.ph}}</td>
                                 <td>{{ ca.pressure}}</td>
                                 <td>{% for agent in ca.agents %} <a href="/agents/{{ agent.key }}">{{agent.name}}</a>, {%endfor%}</td>
-                                <td><a href="{{ca.source}}"> {{ca.source}} </a></td>
+                                <td><a href="/sources/{{ca.source}}"> {{ca.source}} </a></td>
                             </tr>
                         {% endfor %}
                     </tbody>
