@@ -4,10 +4,22 @@ from wtforms import Form, SearchField
 from prebchemdb.retrieve import _all_molecule_info, _all_reaction_info, ibf, _all_agent_info, _all_source_info, _obtain_module, _index_modules, _find_similar_reactions, _expansion_operator, _new_search_function, _iterative_expansion_operator, database_statistics
 from neomodel import config
 import json
+import logging
 import os
 import neo4j
 
 app = Flask(__name__)
+
+# Make sure log messages (in particular tracebacks from /search/) are visible
+# when running under gunicorn. If gunicorn is in charge, reuse its handlers;
+# otherwise fall back to a plain stderr handler.
+_gunicorn_logger = logging.getLogger('gunicorn.error')
+if _gunicorn_logger.handlers:
+    app.logger.handlers = _gunicorn_logger.handlers
+    app.logger.setLevel(_gunicorn_logger.level)
+else:
+    logging.basicConfig(level=logging.INFO)
+    app.logger.setLevel(logging.INFO)
 
 MAINTENANCE_MODE = os.environ.get('MAINTENANCE_MODE', '0') == '1'
 
@@ -260,17 +272,21 @@ def search():
     the task of detecting which kind of query was introduced. 
     """
     query = request.args.get('query', None)
-    app.logger.info('searching "{0}" using _new_search_function'.format(query))
-    
+    app.logger.info('searching "%r" using _new_search_function', query)
+
     form = SearchForm(request.form)
     try:
         context = _new_search_function(query)
     except Exception:
-        
+        # Preserve the full traceback in the server logs so we can see what
+        # actually went wrong when /search/ 500s on the deployed server.
+        app.logger.exception(
+            '_new_search_function failed for query=%r', query,
+        )
         abort(500)
         return ""
-        
-    app.logger.info('returning results for "{0}" using _new_search_function'.format(query))
+
+    app.logger.info('returning results for "%r" using _new_search_function', query)
     if request.method == 'POST':
         
         return redirect(url_for('search', query=form.query.data))
