@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}ChemOrigins — Maintenance{% endblock %}
+{% block content %}
+
+<style>
+    .custom-container { max-width: 1000px; margin: 0 auto; }
+    .colored-banner {
+        background-color: rgb(0,21,40);
+        background-image: url('/static/cubes.png'),
+            linear-gradient(90deg, rgba(124,21,40,1) 0%, rgba(124,45,89,1) 25%,
+                            rgba(4,45,89,1) 48%, rgba(4,45,89,1) 75%,
+                            rgba(124,21,40,1) 100%);
+        background-repeat: repeat;
+        background-position: center;
+    }
+</style>
+
+<div class="hero is-medium is-dark colored-banner">
+    <div class="hero-body">
+        <div class="custom-container">
+            <div class="columns">
+                <div class="column is-1 has-text-centered">
+                    <figure class="image is-inline-block">
+                        <img src="/static/ChemOrigins-Logo-White.png" width=60%>
+                    </figure>
+                </div>
+                <div class="column">
+                    <h1 class="title is-1">ChemOrigins</h1>
+                    <h2 class="subtitle is-4">🛠️ Temporarily under maintenance</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="custom-container">
+    <div class="section">
+        <div class="notification is-warning">
+            <p>
+                <strong>The site is currently down for maintenance.</strong>
+                We are aware of the issue and are working on a fix. Search and
+                browsing features are temporarily unavailable.
+            </p>
+            <br>
+            <p>
+                Thanks for your patience. For urgent questions please contact
+                <a href="mailto:cuevaszuviri@wisc.edu">cuevaszuviri@wisc.edu</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

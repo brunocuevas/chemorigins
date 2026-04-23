@@ -9,6 +9,14 @@ import neo4j
 
 app = Flask(__name__)
 
+MAINTENANCE_MODE = os.environ.get('MAINTENANCE_MODE', '0') == '1'
+
+@app.before_request
+def _maintenance_gate():
+    if MAINTENANCE_MODE and not request.path.startswith('/static/'):
+        form = SearchForm(request.form)
+        return render_template('maintenance.html', form=form), 503
+
 def try_connect(url):
     try:
         config.DATABASE_URL = url
