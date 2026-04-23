@@ -5,42 +5,52 @@ FROM python:3.12-slim
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
+# Pull uv from its official image so we can install the exact versions
+# locked in `uv.lock` (pip alone would resolve `pyproject.toml`'s
+# >= constraints, which drifts from what we test locally).
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
 # Create and set working directory
 WORKDIR /code
 
-# Copy dependency files first to leverage Docker cache
-COPY pyproject.toml ./
-COPY uv.lock ./
-COPY README.md ./
+# System build/runtime dependencies (RDKit's wheel needs the X libs).
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        python3-dev \
+        git \
+        libxrender1 \
+        libxext-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install build essentials and python dev tools needed for certain dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    python3-dev
+# Copy dependency manifests first to leverage Docker layer caching.
+COPY pyproject.toml uv.lock README.md ./
 
-RUN apt-get update && apt-get install -y libxrender1 libxext-dev git && rm -rf /var/lib/apt/lists/*
+# Install only the locked third-party dependencies (skip our own project for now).
+RUN uv sync --frozen --no-install-project --no-dev
 
- 
-# Copy the rest of the application code
+# Copy the rest of the application code.
 COPY app/ ./app/
 COPY prebchemdb/ ./prebchemdb/
 COPY scripts/ ./scripts/
 COPY src/ ./src/
 COPY test/ ./test/
 
-# Install Python package installer (pip) and dependencies
-RUN pip install --no-cache-dir -U pip && \
-    pip install --no-cache-dir .
+# Now install our project itself against the already-locked deps.
+RUN uv sync --frozen --no-dev
 
+# Make the uv-managed venv the default Python for subsequent layers / CMD.
+ENV PATH="/code/.venv/bin:${PATH}"
 
-# Create directory for image buffer
-# RUN mkdir -p /data/image-buffer
-ENV PREBCHEMDB_IMAGE_BUFFER=static/
+# Create directory for the image buffer and use an absolute path so it
+# doesn't depend on the worker's current working directory.
+RUN mkdir -p /code/app/static
+ENV PREBCHEMDB_IMAGE_BUFFER=/code/app/static/
 
-
-
-# Expose the port the app runs on
+# Expose the port the app runs on.
 EXPOSE 8000
-WORKDIR app/
-# Command to run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "1", "-m", "007", "wsgi:app"]
+WORKDIR /code/app
+
+# Command to run the application. Timeout bumped so heavy /search/
+# requests (many RDKit image renders on a cold cache) aren't SIGKILL'd
+# by the default 30s worker timeout.
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "2", "--timeout", "120", "-m", "007", "wsgi:app"]
