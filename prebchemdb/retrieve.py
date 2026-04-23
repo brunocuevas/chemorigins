@@ -555,13 +555,18 @@ def _new_search_function(q):
     )
 
     for reaction, conditions in reactions_results:
-        for condition in conditions[0]:
+        # Older neomodel wraps `COLLECT(...)` rows as `[[...dicts...]]`, newer
+        # versions return the list directly. Normalize both shapes so the code
+        # doesn't depend on the accidental wrapping.
+        if conditions and isinstance(conditions[0], list):
+            conditions = conditions[0]
+        for condition in conditions:
             condition['agents'] = [a._properties for a in condition['agents']]
 
         reactions.append({
             'reaction': reaction.__properties__,
             'img': ibf.generate_reaction_image(entry=reaction.key, smiles=reaction.smiles),
-            'conditions': [c for c in conditions[0]]
+            'conditions': list(conditions),
         })
         
     for molecule  in molecules_results[0]:
